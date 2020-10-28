@@ -1,10 +1,11 @@
 import React from 'react';
 import { MultiStepForm } from './components/MultiStepForm';
+import {DirectContacts} from './components/DirectContacts';
 
 function App() {
   return (
     <div className="App">
-      <MultiStepForm/>
+      <DirectContacts/>
     </div>
   );
 }

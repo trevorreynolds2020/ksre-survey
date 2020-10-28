@@ -11,11 +11,13 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import './ReportStyle.css';
+import DirectSummary from "./DirectSummary";
+import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 //import Check from 'carbon-components/Checkbox'; plz work
 
 
-export const Report = ({formData, setForm, navigation}) => {
+export const Report = ({formData}) => {
 
     const {date, 
     countiesVisited,
@@ -30,12 +32,19 @@ export const Report = ({formData, setForm, navigation}) => {
 
     return(
         <Container maxWidth = "xs">
+
+                <Router>
+                    <Route path="/direct-summary" exact component={DirectSummary}/>
+                    <Route path="/report" exact component={Report}/>
+                </Router>
+
+
             <h1 class = "title"> Report </h1>
 
            
             
             <div className = "datePickerContainer">
-            <DatePicker  //datepicker123 hello another test trying hard to make this work
+            <DatePicker  
                 selected = {startDate} // current date in DatePicker
                 onChange = {date => setSelectedDate(date)} // when date changes update the in the DatePicker
                 isClearable // X button - clears date
@@ -152,16 +161,23 @@ export const Report = ({formData, setForm, navigation}) => {
                 className = "commentsClass"
 
             />
-            <Button
-                color = "black"
-                variant="contained"
-            >
-                Submit
-            </Button>
-            
-            
+
+            {/* Renders the Summary page with routing */}
+            <Router>
+            <Link to = "/direct-summary">
+                <Button color = "black" variant="contained">
+                    Submit
+                </Button>            
+            </Link>
+            <Switch>
+                <Route path="/direct-summary" exact component={DirectSummary}/>
+            </Switch>
+            </Router>
         </Container>
+
 
         
     )
 }
+
+export default Report;

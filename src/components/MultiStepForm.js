@@ -1,7 +1,7 @@
 import React from "react";
 import {useForm, useStep} from "react-hooks-helper";
 import { Report } from "./stepForm/Report";
-import { Review } from "./stepForm/Review";
+import { DirectSummary } from "./stepForm/DirectSummary";
 
 const requiredInformation = {
     date: "",
@@ -16,7 +16,7 @@ const requiredInformation = {
 
 const steps = [
     {id: "report"},
-    {id: "review"},
+    {id: "DirectSummary"},
 ];
 
 export const MultiStepForm = () =>{
@@ -30,8 +30,8 @@ export const MultiStepForm = () =>{
     switch(step.id){
         case "report":
             return <Report { ...props}/>;
-        case "review":
-            return <Review { ...props}/>;
+        case "DirectSummary":
+            return <DirectSummary { ...props}/>;
     }
 
     return(
