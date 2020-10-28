@@ -35,7 +35,7 @@ export const Report = ({formData, setForm, navigation}) => {
            
             
             <div className = "datePickerContainer">
-            <DatePicker 
+            <DatePicker  //datepicker
                 selected = {startDate} // current date in DatePicker
                 onChange = {date => setSelectedDate(date)} // when date changes update the in the DatePicker
                 isClearable // X button - clears date
