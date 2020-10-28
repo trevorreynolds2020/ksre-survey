@@ -12,7 +12,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import './ReportStyle.css';
 
-//import Check from 'carbon-components/Checkbox';
+//import Check from 'carbon-components/Checkbox'; plz work
 
 
 export const Report = ({formData, setForm, navigation}) => {
