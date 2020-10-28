@@ -1,0 +1,25 @@
+#commentsClass{
+    width: auto;
+    background-color: red;
+}
+
+
+.datePickerContainer {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    flex: 1 1 0px;
+    width: inherit;
+  }
+  
+  #datepicker {   
+    width: 100%; 
+    display: inline-flex;
+  }
+  .datepicker, 
+  .datepicker > div.react-datepicker-wrapper, 
+  .datepicker > div > div.react-datepicker__input-container
+  .datepicker > div > div.react-datepicker__input-container input {
+     width: 100%;
+  }
+  
