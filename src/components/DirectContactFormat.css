@@ -1,0 +1,30 @@
+.counties-visited {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .comments {
+    width: 100%;
+    display: inline;
+  }
+  
+  .comments > textarea {
+    width: inherit;
+  }
+
+  .submit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .indirect-topic-box{
+    width: 100%;
+    display: inline;
+  }
+
+  .indirect-topic-box > textarea{
+    width: inherit;
+  }

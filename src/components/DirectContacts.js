@@ -11,19 +11,26 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-//import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
+import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
+import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
+import './DirectContactFormat.css';
 
 
 export const DirectContacts = () =>  {
 
     const [startDate, setSelectedDate] = useState(new Date());
 
-    //const sizes = [ "X-Small", "Small", "Medium", "Large", "X-Large", "2X-Large" ];
+    const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
+    const gender = [ "Male", "Female", "idk ask my therapist"];
+    const race = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
+    const ethnicity = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
 
     return (
       <Container>
-          <DatePicker  
+          <br/>
+          <div className = "datePickerContainer">
+            <DatePicker  
                 selected = {startDate} // current date in DatePicker
                 onChange = {date => setSelectedDate(date)} // when date changes update the in the DatePicker
                 isClearable // X button - clears date
@@ -35,8 +42,11 @@ export const DirectContacts = () =>  {
                 className = "datePicker"
                 
             />
+            
+            </div>
 
             {/* Name */}
+            <br/>
             <TextField
                 label = "Name: "
                 name = "name"
@@ -46,15 +56,18 @@ export const DirectContacts = () =>  {
             />
 
             {/* Counties */}
+            <br/>
+            <br/>
+            <label class = "counties-visited">Counties Visited:</label>
+            <div class = "counties-visited">
             <FormControl
                 component="fieldset"
-                fullWidth
+                
              >
-                <h1>Counties Visited: </h1>
-                <FormGroup row>
+                <FormGroup row >
                     <FormControlLabel
                     value="start"
-                    control={<Checkbox color="primary" />}
+                    control={<Checkbox />}
                     label="RL"
                     labelPlacement="start"
                     width= "20%"
@@ -89,10 +102,37 @@ export const DirectContacts = () =>  {
                     />
                 </FormGroup>
             </FormControl>
+            </div>
 
-            {/* Grand Challenges */}
+            {/* Grand Challenges, Gender, Race, Ethnicity */}
+            <br/>
+            <Dropdown options={challenges} value={"Grand Challenges"} placeholder="Select an option" />
+            <br/>
+            <Dropdown options={gender} value={"Gender"} placeholder="Select an option" />
+            <br/>
+            <Dropdown options={race} value={"Race"} placeholder="Select an option" />
+            <br/>
+            <Dropdown options={ethnicity} value={"Ethnicity"} placeholder="Select an option" />
+
+            {/* Comments */}
+            <h2>Comments:</h2>
+            <div class="comments">
+                <textarea name="" cols="" rows="5"></textarea>
+            </div>
             
-
+            {/* Submit */}
+            <br/>
+            <br/>
+            <div class = "submit-button">
+            <Link to = "/direct-summary">
+                <Button color = "black" variant="contained">
+                            Submit
+                </Button>            
+            </Link>
+            </div>
+        
+                
+          
 
       </Container>
     );

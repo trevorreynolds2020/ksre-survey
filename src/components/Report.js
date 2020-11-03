@@ -19,30 +19,19 @@ import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 export const Report = ({formData}) => {
 
-    const {date, 
-    countiesVisited,
-    hoursWorked,
-    vacationOrSick,
-    leaveHours,
-    personalMilesDriven,
-    inofficeOrTelecommunication,
-    comments} = formData;
-    
     const [startDate, setSelectedDate] = useState(new Date());
 
     return(
         <Container maxWidth = "xs">
 
-                <Router>
-                    <Route path="/direct-summary" exact component={DirectSummary}/>
-                    <Route path="/report" exact component={Report}/>
-                </Router>
+                
 
 
             <h1 class = "title"> Report </h1>
 
            
-            
+            {/* Date */}
+
             <div className = "datePickerContainer">
             <DatePicker  
                 selected = {startDate} // current date in DatePicker
@@ -107,7 +96,7 @@ export const Report = ({formData}) => {
             <TextField
                 label = "Hours Worked: "
                 name = "hoursWorked"
-                value = {formData.hoursWorked}
+                //value = {formData.hoursWorked}
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
@@ -126,7 +115,7 @@ export const Report = ({formData}) => {
             <TextField
                 label = "Leave Hours: "
                 name = "personalMilesDriven"
-                value = {formData.personalMilesDriven}
+                //value = {formData.personalMilesDriven}
                 margin = "normal"
                 variant = "outlined"
                 autoComplete = "off"
@@ -137,7 +126,7 @@ export const Report = ({formData}) => {
             <TextField
                 label = "Personal Miles Driven: "
                 name = "personalMilesDriven"
-                value = {formData.personalMilesDriven}
+                //value = {formData.personalMilesDriven}
                 margin = "normal"
                 variant = "outlined"
                 autoComplete = "off"
@@ -152,27 +141,27 @@ export const Report = ({formData}) => {
                 </RadioGroup>
             </FormControl>
 
-            {/* Comments */}
-            <h1>Comments:</h1>
-            <TextBoxComponent 
-                multiline={true}
-                title = "Comments:"
-                id = "comments"
-                className = "commentsClass"
 
-            />
+            {/* Comments */}
+            <h2>Comments:</h2>
+            <div class="comments">
+                <textarea name="" cols="" rows="5"></textarea>
+            </div>
 
             {/* Renders the Summary page with routing */}
-            <Router>
+
+            {/* Take info from fields and pass to database, generate id and render same component with unique id */}
+            
+            {/* Submit */}
+            <br/>
+            <br/>
+            <div class = "submit-button">
             <Link to = "/direct-summary">
                 <Button color = "black" variant="contained">
-                    Submit
+                            Submit
                 </Button>            
             </Link>
-            <Switch>
-                <Route path="/direct-summary" exact component={DirectSummary}/>
-            </Switch>
-            </Router>
+            </div>
         </Container>
 
 
