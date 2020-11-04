@@ -16,21 +16,16 @@ import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
 import './DirectContactFormat.css';
 
-
-export const DirectContacts = () =>  {
+export const Event = ({formData}) => {
 
     const [startDate, setSelectedDate] = useState(new Date());
-
     const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
-    const gender = [ "Male", "Female", "other"];
-    const race = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
-    const ethnicity = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
 
-    return (
-      <Container>
-          <br/>
-          <div className = "datePickerContainer">
-            <DatePicker  
+
+    return(
+        <Container maxWidth = "xs">
+        <h1>Events</h1>
+        <DatePicker  
                 selected = {startDate} // current date in DatePicker
                 onChange = {date => setSelectedDate(date)} // when date changes update the in the DatePicker
                 isClearable // X button - clears date
@@ -42,21 +37,9 @@ export const DirectContacts = () =>  {
                 className = "datePicker"
                 
             />
-            
-            </div>
-
-            {/* Name */}
-            <br/>
-            <TextField
-                label = "Name: "
-                name = "name"
-                margin = "normal"
-                variant = "outlined"
-                fullWidth
-            />
-
-            {/* Counties */}
-            <br/>
+        
+        {/* Counties */}
+        <br/>
             <br/>
             <label class = "counties-visited">Counties Visited:</label>
             <div class = "counties-visited">
@@ -104,38 +87,81 @@ export const DirectContacts = () =>  {
             </FormControl>
             </div>
 
-            {/* Grand Challenges, Gender, Race, Ethnicity */}
-            <br/>
-            <Dropdown options={challenges} value={"Grand Challenges"} placeholder="Select an option" />
-            <br/>
-            <Dropdown options={gender} value={"Gender"} placeholder="Select an option" />
-            <br/>
-            <Dropdown options={race} value={"Race"} placeholder="Select an option" />
-            <br/>
-            <Dropdown options={ethnicity} value={"Ethnicity"} placeholder="Select an option" />
+        {/* People information */}
+        <br/>
+            <TextField
+                label = "Male: "
+                name = "male"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+            />
+        <br/>
+            <TextField
+                label = "Female: "
+                name = "female"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+            />
+        <br/>
+            <TextField
+                label = "Other: "
+                name = "other"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+            />
+        <br/>
+            <TextField
+                label = "Non-Hispanic: "
+                name = "female"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+            />
+        <br/>
+            <TextField
+                label = "Hispanic: "
+                name = "female"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+            />
+       
+        <br/>
+            <TextField
+                label = "Unknown: "
+                name = "female"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+            />
 
-            {/* Comments */}
-            <h2>Comments:</h2>
-            <div class="comments">
-                <textarea name="" cols="" rows="5"></textarea>
-            </div>
-            
-            {/* Submit */}
-            <br/>
+        {/* Grand Challenges */}
+        <br/>
+        <br/>
+            <Dropdown options={challenges} value={"Grand Challenges"} placeholder="Select an option" />
+        <br/>
+
+        {/* Comments */}
+        <h2>Comments:</h2>
+        <div class="comments">
+            <textarea name="" cols="" rows="5"></textarea>
+        </div>
+
+        {/* Submit */}
+        <br/>
             <br/>
             <div class = "submit-button">
-            <Link to = "/direct-summary">
+            <Link to = "/event-summary">
                 <Button color = "black" variant="contained">
                             Submit
                 </Button>            
             </Link>
             </div>
-        
-                
-          
-
-      </Container>
+        </Container>
     );
-  }
-  
-  export default DirectContacts;
+}
+
+export default Event;

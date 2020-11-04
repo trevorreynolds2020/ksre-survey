@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import DirectSummary from './components/DirectSummary';
 import Report from './components/Report';
 import IndirectContacts from './components/IndirectContacts';
+import Event from './components/Event';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/direct-summary" exact component={DirectSummary}/>
           
         </Switch>
-      <IndirectContacts/>
+      <Event/>
       </Router>
     </div>
   );
