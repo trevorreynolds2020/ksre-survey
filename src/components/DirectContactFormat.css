@@ -28,3 +28,15 @@
   .indirect-topic-box > textarea{
     width: inherit;
   }
+
+  .homepage-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .homepage-buttons > textarea {
+    width: inherit;
+  }

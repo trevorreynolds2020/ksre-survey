@@ -5,6 +5,7 @@ import DirectSummary from './components/DirectSummary';
 import Report from './components/Report';
 import IndirectContacts from './components/IndirectContacts';
 import Event from './components/Event';
+import Homepage from './components/Homepage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path="/direct-summary" exact component={DirectSummary}/>
           
         </Switch>
-      <Event/>
+      <Homepage/>
       </Router>
     </div>
   );

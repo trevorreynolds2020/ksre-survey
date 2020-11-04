@@ -16,7 +16,7 @@ import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
 import './DirectContactFormat.css';
 
-export const Event = ({formData}) => {
+export const Event = () => {
 
     const [startDate, setSelectedDate] = useState(new Date());
     const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
@@ -156,10 +156,11 @@ export const Event = ({formData}) => {
             <div class = "submit-button">
             <Link to = "/event-summary">
                 <Button color = "black" variant="contained">
-                            Submit
+                    Direct Contacts
                 </Button>            
             </Link>
             </div>
+        
         </Container>
     );
 }
