@@ -19,7 +19,7 @@ import './DirectContactFormat.css';
 export const IndirectContacts = () =>  {
 
     const [startDate, setSelectedDate] = useState(new Date());
-    const methodOfContact = ["Phone","Email"]
+    const methodOfContact = ["Phone","Email","Spontaneous"]
     const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
 
 

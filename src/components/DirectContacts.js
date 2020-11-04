@@ -28,6 +28,7 @@ export const DirectContacts = () =>  {
 
     return (
       <Container>
+          <h1>Direct Contacts</h1>
           <br/>
           <div className = "datePickerContainer">
             <DatePicker  

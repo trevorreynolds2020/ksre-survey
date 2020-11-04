@@ -14,9 +14,8 @@ function App() {
         <Switch>
           <Route path="/direct-summary/:id" exact component={DirectSummary}/>
           <Route path="/direct-summary" exact component={DirectSummary}/>
-          
         </Switch>
-      <Homepage/>
+      <Report/>
       </Router>
     </div>
   );

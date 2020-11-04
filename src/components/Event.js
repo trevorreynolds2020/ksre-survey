@@ -39,7 +39,6 @@ export const Event = () => {
             />
         
         {/* Counties */}
-        <br/>
             <br/>
             <label class = "counties-visited">Counties Visited:</label>
             <div class = "counties-visited">
@@ -47,14 +46,9 @@ export const Event = () => {
                 component="fieldset"
                 
              >
+                 {/*RL take out*/}
                 <FormGroup row >
-                    <FormControlLabel
-                    value="start"
-                    control={<Checkbox />}
-                    label="RL"
-                    labelPlacement="start"
-                    width= "20%"
-                    />
+                    
                     <FormControlLabel
                     value="start"
                     control={<Checkbox color="primary" />}
@@ -88,7 +82,6 @@ export const Event = () => {
             </div>
 
         {/* People information */}
-        <br/>
             <TextField
                 label = "Male: "
                 name = "male"
@@ -156,7 +149,7 @@ export const Event = () => {
             <div class = "submit-button">
             <Link to = "/event-summary">
                 <Button color = "black" variant="contained">
-                    Direct Contacts
+                    Submit
                 </Button>            
             </Link>
             </div>

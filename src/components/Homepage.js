@@ -23,17 +23,11 @@ export const Homepage = () => {
     return(
         <Container>
 
+            {/* Add settings with logout option */}
+
         {/* Submit */}
         <br/>
-            <br/>
-            <div class = "">
-            <Link to = "/event-summary">
-                <Button color = "black" variant="contained">
-                            Submit
-                </Button>            
-            </Link>
-            </div>
-            <br/>
+            
             <br/>
             <div class = "">
             <Link to = "/event-summary">
