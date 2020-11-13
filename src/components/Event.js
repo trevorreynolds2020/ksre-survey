@@ -24,7 +24,7 @@ export const Event = () => {
 
     return(
         <Container maxWidth = "xs">
-        <h1>Events</h1>
+        <h1>Event</h1>
         <DatePicker  
                 selected = {startDate} // current date in DatePicker
                 onChange = {date => setSelectedDate(date)} // when date changes update the in the DatePicker

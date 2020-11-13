@@ -100,7 +100,7 @@ export const Report = ({formData}) => {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
-            
+                
             />
 
             {/* Vacation or Sick */}

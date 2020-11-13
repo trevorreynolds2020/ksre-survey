@@ -4,9 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Button, FormControl, FormGroup } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
-import { Button, FormControl, FormGroup } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
@@ -16,61 +16,43 @@ import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
 import './DirectContactFormat.css';
 
-
-
-export const Homepage = () => {
-
+export const EventSummary = () => {
     return(
-        <Container>
+        <Container maxWidth = "xs">
 
-            {/* Add settings with logout option */}
+            <h1>Event: </h1>
+            <h2>Date: </h2>
+            <h2>Name: </h2>
+            <h2>County: </h2>
+            <h2>Grand Challenges:</h2>
+            <h2>Gender: </h2>
+            <h2>Race: </h2>
+            <h2>Ethnicity: </h2>
+            <h2>Comments: </h2>
 
-        {/* Submit */}
-        <br/>
-            
             <br/>
-            <div class = "">
-            <Link to = "/report">
-                <Button color = "black" variant="contained">
-                    Report
-                </Button>            
-            </Link>
-            </div>
-        <br/>
-            <br/>
-            <div class = "">
-            <Link to = "/direct-contacts">
-                <Button color = "black" variant="contained">
-                    Direct Contact
-                </Button>            
-            </Link>
-            </div>
-        <br/>
-            <br/>
-            <div class = "">
-            <Link to = "/indirect-contacts">
-                <Button color = "black" variant="contained">
-                    Indirect Contact
-                </Button>            
-            </Link>
-            </div>
-        <br/>
             <br/>
             <div class = "">
             <Link to = "/event">
                 <Button color = "black" variant="contained">
-                    Event
+                    Edit
                 </Button>            
             </Link>
             </div>
-        
-        
-        
-        <br/>
-        
-        
+            <br/>
+                <br/>
+                <div class = "">
+                <Link to = "/">
+                    <Button color = "black" variant="contained">
+                        Submit
+                    </Button>            
+                </Link>
+            </div>
         </Container>
+
+
     );
+
 }
 
-export default Homepage;
+export default EventSummary;

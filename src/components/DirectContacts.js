@@ -15,25 +15,91 @@ import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
 import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
 import './DirectContactFormat.css';
+import {useHistory} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {submitComment, submitCounty} from '../rootSlice';
+import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import {configureStore} from "react-redux";
+import directContacts from "../reducers/directContacts";
+import {connect} from "react-redux";
 
 
-export const DirectContacts = () =>  {
 
-    const [startDate, setSelectedDate] = useState(new Date());
+class DirectContacts extends React.Component {
 
-    const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
+    constructor(props){
+        super(props)
+        this.state = {
+            date: props.date || Date.now(),
+            name: props.name || "",
+            counties: [],
+            challenges: "",
+            gender: "",
+            race: "",
+            ethnicity: "",
+            comment: ""
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleDateChange = this.handleDateChange.bind(this)
+        this.handeCountiesSelect = this.handeCountiesSelect.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange(event){
+        const name = event.target.name;
+        const value = event.target.type === "checkbox" ? event.target.checked: event.target.value
+        this.setState({[name]:value})
+        
+    }
+    handleDateChange(date){
+        this.setState({date:date})
+    }
+    handleSubmit(event){
+        event.preventDefault();
+        this.props.directContacts(this.state);
+        console.log("Here");
+    }
+    handeCountiesSelect(event){
+        var counties = this.state.counties;
+        if(event.target.checked){
+            counties.push(event.target.value);
+        }
+        else{
+            const index = counties.indexOf(event.target.value);
+            counties.splice(index,1);
+        }
+        this.setState({counties:counties});
+    }
+    render(){
+//    const [startDate, setSelectedDate] = useState(new Date());
+   // const dispatch = useDispatch();
+    //const history = useHistory(); 
+    //const comment = useSelector((state) => state.comment);
+   // const { register, handleSubmit } = useForm({ defaultValues: { comment } });
+
+ 
+
+
+    const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"];
     const gender = [ "Male", "Female", "other"];
     const race = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
     const ethnicity = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
 
+   // const state = useSelector((state) => state);
+
+
     return (
+
+        
       <Container>
-          <h1>Direct Contacts</h1>
+        <form onSubmit = {this.handleSubmit}>
+
+          <pre>{JSON.stringify(this.state, null, 2)}</pre>
           <br/>
           <div className = "datePickerContainer">
             <DatePicker  
-                selected = {startDate} // current date in DatePicker
-                onChange = {date => setSelectedDate(date)} // when date changes update the in the DatePicker
+                selected = {this.state.date} // current date in DatePicker
+                onChange = {this.handleDateChange} // when date changes update the in the DatePicker
                 isClearable // X button - clears date
                 withPortal // cover screen with calender
                 margin = "normal"
@@ -43,7 +109,9 @@ export const DirectContacts = () =>  {
                 className = "datePicker"
                 
             />
+
             
+            {/* redux for database stuff*/}
             </div>
 
             {/* Name */}
@@ -54,6 +122,8 @@ export const DirectContacts = () =>  {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
+                value = {this.state.name}
+                onChange = {this.handleChange}
             />
 
             {/* Counties */}
@@ -66,50 +136,52 @@ export const DirectContacts = () =>  {
                 
              >
                 <FormGroup row >
+                
                     <FormControlLabel
-                    value="start"
-                    control={<Checkbox />}
-                    label="RL"
-                    labelPlacement="start"
-                    width= "20%"
-                    />
-                    <FormControlLabel
-                    value="start"
                     control={<Checkbox color="primary" />}
                     label="CR"
                     labelPlacement="start"
                     width= "20%"
+                    value = "CR"
+                    checked = {this.state.counties.includes("CR")}
+                    onChange = {this.handeCountiesSelect}
                     />
                     <FormControlLabel
-                    value="start"
                     control={<Checkbox color="primary" />}
                     label="LB"
                     labelPlacement="start"
                     width= "20%"
+                    value = "LB"
+                    checked = {this.state.counties.includes("LB")}
+                    onChange = {this.handeCountiesSelect}
                     />
                     <FormControlLabel
-                    value="start"
                     control={<Checkbox color="primary" />}
                     label="MG"
                     labelPlacement="start"
                     width= "20%"
+                    value = "MG"
+                    checked = {this.state.counties.includes("MG")}
+                    onChange = {this.handeCountiesSelect}
                     />
                     <FormControlLabel
-                    value="start"
                     control={<Checkbox color="primary" />}
                     label="WL"
                     labelPlacement="start"
                     width= "20%"
+                    value = "WL"
+                    checked = {this.state.counties.includes("WL")}
+                    onChange = {this.handeCountiesSelect}
                     />
                 </FormGroup>
             </FormControl>
             </div>
 
-            {/* Grand Challenges, Gender, Race, Ethnicity */}
+            {/* Grand Challenges, Gender, Race, Ethnicity*/}
             <br/>
-            <Dropdown options={challenges} value={"Grand Challenges"} placeholder="Select an option" />
+            <Dropdown options={challenges} name="challenges" placeholder="Grand Challenges" />
             <br/>
-            <Dropdown options={gender} value={"Gender"} placeholder="Select an option" />
+            <Dropdown options={gender} value={"Gender"} name = "comment" placeholder="Select an option" />
             <br/>
             <Dropdown options={race} value={"Race"} placeholder="Select an option" />
             <br/>
@@ -118,25 +190,27 @@ export const DirectContacts = () =>  {
             {/* Comments */}
             <h2>Comments:</h2>
             <div class="comments">
-                <textarea name="" cols="" rows="5"></textarea>
+                <textarea name="comment" cols="" rows="5"></textarea>
             </div>
             
             {/* Submit */}
             <br/>
             <br/>
-            <div class = "submit-button">
-            <Link to = "/direct-summary">
-                <Button color = "black" variant="contained">
-                            Submit
-                </Button>            
-            </Link>
+            <div class = "submit-button" >
+            <input value = "Submit" type = "submit"></input> 
+            
             </div>
         
                 
           
-
+            </form>  
       </Container>
     );
+    }
   }
   
-  export default DirectContacts;
+  const mapStateToProps = (state,ownProps) => ({
+    name: "ff"
+  })
+  const mapDispatchToProps = {directContacts}
+  export default connect(mapStateToProps,mapDispatchToProps)(DirectContacts);
