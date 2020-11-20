@@ -16,13 +16,14 @@ import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
 import './DirectContactFormat.css';
 import {useHistory} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, dispatch } from 'react-redux';
 import {submitComment, submitCounty} from '../rootSlice';
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import {configureStore} from "react-redux";
 import directContacts from "../reducers/directContacts";
 import {connect} from "react-redux";
+import {addDirectContact} from '../actions/addDirectContact';
 
 
 
@@ -197,7 +198,7 @@ class DirectContacts extends React.Component {
             <br/>
             <br/>
             <div class = "submit-button" >
-            <input value = "Submit" type = "submit"></input> 
+            <input onClick = {()=> this.props.dispatch(addDirectContact)}value = "Submit" type = "submit"></input> 
             
             </div>
         

@@ -27,7 +27,7 @@ export const DirectSummary = () => {
         <Container maxWidth = "xs">
             <pre>{JSON.stringify(state, null, 2)}</pre>
             <h1>Summary: {id} </h1>
-            <h2>Date: </h2>
+            <h2>Date: {this.props.date}</h2>
             <h2>Name: </h2>
             <h2>County: </h2>
             <h2>Grand Challenges:</h2>
