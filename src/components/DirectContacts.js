@@ -211,7 +211,7 @@ class DirectContacts extends React.Component {
   }
   
   const mapStateToProps = (state,ownProps) => ({
-    name: "ff"
+    name: "fff"
   })
   const mapDispatchToProps = {directContacts}
   export default connect(mapStateToProps,mapDispatchToProps)(DirectContacts);
