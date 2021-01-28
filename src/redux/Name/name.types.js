@@ -1,0 +1,3 @@
+const UPDATENAME = 'UPDATENAME'
+
+export default UPDATENAME;

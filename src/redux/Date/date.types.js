@@ -1,0 +1,3 @@
+const UPDATEDATE = 'UPDATEDATE'
+
+export default UPDATEDATE;

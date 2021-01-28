@@ -15,15 +15,38 @@ import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
 import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
 import './DirectContactFormat.css';
+import {useStateValue} from './StateProvider';
 
-export const Event = () => {
+function Event() {
 
     const [startDate, setSelectedDate] = useState(new Date());
     const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
+    const [{male},dispatch] = useStateValue();
+    //const gender_male = null;
+    
 
+    // handleChange(event){
+    //     const name = event.target.name;
+    //     const value = event.target.type === "checkbox" ? event.target.checked: event.target.value;
+    //     this.setState({[name]:value});
+    // }
+
+    // function handleChange(){
+    //     dispatch({ type: 'SET_MALE', male: "sample" });
+    //     console.log(male);
+    // }
+
+    function handleChange(event){
+        const value = event.target.male.value;
+        //const value = event.target.type === "checkbox" ? event.target.checked: event.target.value
+        dispatch({ type: 'SET_MALE', male: "sample" });
+        console.log(value);
+        console.log(male);
+    }
 
     return(
         <Container maxWidth = "xs">
+
         <h1>Event</h1>
         <DatePicker  
                 selected = {startDate} // current date in DatePicker
@@ -44,8 +67,7 @@ export const Event = () => {
             <div class = "counties-visited">
             <FormControl
                 component="fieldset"
-                
-             >
+            >
                  {/*RL take out*/}
                 <FormGroup row >
                     
@@ -88,6 +110,8 @@ export const Event = () => {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
+                value = {male}
+                onChange = {this.handleChange}
             />
         <br/>
             <TextField
@@ -148,12 +172,11 @@ export const Event = () => {
             <br/>
             <div class = "submit-button">
             <Link to = "/event-summary">
-                <Button color = "black" variant="contained">
+                <Button onClick = {()=> handleChange} color = "black" variant="contained">
                     Submit
                 </Button>            
             </Link>
             </div>
-        
         </Container>
     );
 }

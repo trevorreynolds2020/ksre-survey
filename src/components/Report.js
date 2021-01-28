@@ -11,7 +11,6 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import './ReportStyle.css';
-import DirectSummary from "./DirectSummary";
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 //import Check from 'carbon-components/Checkbox'; plz work

@@ -2,17 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from "./serviceWorker";
-import { Provider } from "react-redux";
-import store from "./store";
+//import { Provider } from "react-redux";
+//import store from "./store";
+import { Provider } from 'react-redux';
+// import { initialState } from './reducers/reducer';
+// import { reducer } from './rootSlice';
+import reducer, {initialState} from './reducers/reducer'
+import store from './redux/store';
+
 
 //const store = createStore(directContacts)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <React.StrictMode>
       <App />
-    </Provider>
-  </React.StrictMode>,
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 

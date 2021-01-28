@@ -1,0 +1,3 @@
+const UPDATECOMMENT = 'UPDATECOMMENT'
+
+export default UPDATECOMMENT;

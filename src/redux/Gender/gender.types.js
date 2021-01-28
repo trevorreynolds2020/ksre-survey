@@ -1,0 +1,3 @@
+const UPDATEGENDER = 'UPDATEGENDER'
+
+export default UPDATEGENDER;

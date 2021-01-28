@@ -1,0 +1,3 @@
+const UPDATERACE = 'UPDATERACE'
+
+export default UPDATERACE;
