@@ -1,0 +1,3 @@
+const UPDATETOPIC = 'UPDATETOPIC'
+
+export default UPDATETOPIC;

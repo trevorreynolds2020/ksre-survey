@@ -6,10 +6,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button, FormControl, FormGroup } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
 import 'react-dropdown/style.css';
@@ -17,11 +13,101 @@ import 'react-dropdown/style.css';
 import './DirectContactFormat.css';
 import {useStateValue} from './StateProvider';
 
-function Event() {
+import { updateDate } from '../redux/Date/date.actions';
+import { updateCounties } from "../redux/Counties/counties.actions";
+import { updateMaleTotal } from '../redux/Male/male.actions';
+import { updateFemaleTotal } from '../redux/Female/female.actions';
+import { updateOtherTotal } from '../redux/Other/other.actions';
+import { updateHispanicTotal } from '../redux/Hispanic/hispanic.actions';
+import { updateNonhispanicTotal } from '../redux/Nonhispanic/nonhispanic.actions';
+import { updateUnknownTotal } from '../redux/Unknown/unknown.actions';
+import { updateChallenges } from '../redux/Challenges/challenges.actions';
+import { updateComment } from '../redux/Comment/comment.actions';
+
+import { connect } from "react-redux";
+
+
+function Event(props) {
 
     const [startDate, setSelectedDate] = useState(new Date());
-    const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
-    const [{male},dispatch] = useStateValue();
+    const challengesList = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
+    // const [{male},dispatch] = useStateValue();
+
+    const [ date , setDate ] = useState(null);
+    const [ counties , setCounties ] = useState(null);
+    const [ maleTotal , setMaleTotal ] = useState(null);
+    const [ femaleTotal , setFemaleTotal ] = useState(null);
+    const [ otherTotal , setOtherTotal ] = useState(null);
+    const [ hispanicTotal , setHispanicTotal ] = useState(null);
+    const [ nonhispanicTotal , setNonhispanicTotal ] = useState(null);
+    const [ unknownTotal , setUnknownTotal ] = useState(null);
+    const [ challenges , setChallenges ] = useState(null);
+    const [ comment , setComment ] = useState(null);
+
+    function handleDateChange(date){
+        setDate(date)
+        props.updateDate(date)
+    }
+
+    function handleCountiesChange(event){
+        var counties = props.counties.counties
+        if(event.target.checked){
+            counties.push(event.target.value)
+        }
+        else{
+            const index = counties.indexOf(event.target.value);
+            counties.splice(index,1);
+        }
+        console.log(counties)
+        // console.log(event.target.value)
+        setCounties(counties)
+        props.updateCounties(counties)
+    }
+
+    function handleMaleTotalChange(event){
+        setMaleTotal(event.target.value)
+        props.updateMaleTotal(event.target.value)
+    }
+
+    function handleFemaleTotalChange(event){
+        setFemaleTotal(event.target.value)
+        props.updateFemaleTotal(event.target.value)
+    }
+
+    function handleOtherTotalChange(event){
+        setOtherTotal(event.target.value)
+        props.updateOtherTotal(event.target.value)
+    }
+
+    function handleHispanicTotalChange(event){
+        setHispanicTotal(event.target.value)
+        props.updateHispanicTotal(event.target.value)
+    }
+
+    function handleNonhispanicTotalChange(event){
+        setNonhispanicTotal(event.target.value)
+        props.updateNonhispanicTotal(event.target.value)
+    }
+
+    function handleUnknownTotalChange(event){
+        setUnknownTotal(event.target.value)
+        props.updateUnknownTotal(event.target.value)
+    }
+
+
+    function handleChallengesChange(event){
+        console.log('triggered')
+        console.log(event.value)
+        setChallenges(event.value)
+        props.updateChallenges(event.value)
+    }
+
+    function handleCommentChange(){
+        var comment = document.getElementById("comment-box").value
+        console.log(comment)
+        setComment(comment)
+        props.updateComment(comment)
+    }
     //const gender_male = null;
     
 
@@ -36,21 +122,14 @@ function Event() {
     //     console.log(male);
     // }
 
-    function handleChange(event){
-        const value = event.target.male.value;
-        //const value = event.target.type === "checkbox" ? event.target.checked: event.target.value
-        dispatch({ type: 'SET_MALE', male: "sample" });
-        console.log(value);
-        console.log(male);
-    }
 
     return(
         <Container maxWidth = "xs">
 
         <h1>Event</h1>
         <DatePicker  
-                selected = {startDate} // current date in DatePicker
-                onChange = {date => setSelectedDate(date)} // when date changes update the in the DatePicker
+                selected = {props.date.date} // current date in DatePicker
+                onChange = {handleDateChange} // when date changes update the in the DatePicker
                 isClearable // X button - clears date
                 withPortal // cover screen with calender
                 margin = "normal"
@@ -69,49 +148,57 @@ function Event() {
                 component="fieldset"
             >
                  {/*RL take out*/}
-                <FormGroup row >
-                    
-                    <FormControlLabel
-                    value="start"
-                    control={<Checkbox color="primary" />}
-                    label="CR"
-                    labelPlacement="start"
-                    width= "20%"
-                    />
-                    <FormControlLabel
-                    value="start"
-                    control={<Checkbox color="primary" />}
-                    label="LB"
-                    labelPlacement="start"
-                    width= "20%"
-                    />
-                    <FormControlLabel
-                    value="start"
-                    control={<Checkbox color="primary" />}
-                    label="MG"
-                    labelPlacement="start"
-                    width= "20%"
-                    />
-                    <FormControlLabel
-                    value="start"
-                    control={<Checkbox color="primary" />}
-                    label="WL"
-                    labelPlacement="start"
-                    width= "20%"
-                    />
-                </FormGroup>
+                 <FormGroup row >
+                
+                <FormControlLabel
+                control={<Checkbox color="primary" />}
+                label="CR"
+                labelPlacement="start"
+                width= "20%"
+                value = "CR"
+                checked = {props.counties.counties.includes("CR")}
+                onChange = {handleCountiesChange}
+                />
+                <FormControlLabel
+                control={<Checkbox color="primary" />}
+                label="LB"
+                labelPlacement="start"
+                width= "20%"
+                value = "LB"
+                checked = {props.counties.counties.includes("LB")}
+                onChange = {handleCountiesChange}
+                />
+                <FormControlLabel
+                control={<Checkbox color="primary" />}
+                label="MG"
+                labelPlacement="start"
+                width= "20%"
+                value = "MG"
+                checked = {props.counties.counties.includes("MG")}
+                onChange = {handleCountiesChange}
+                />
+                <FormControlLabel
+                control={<Checkbox color="primary" />}
+                label="WL"
+                labelPlacement="start"
+                width= "20%"
+                value = "WL"
+                checked = {props.counties.counties.includes("WL")}
+                onChange = {handleCountiesChange}
+                />
+            </FormGroup>
             </FormControl>
             </div>
 
-        {/* People information */}
+        {/* Crowd information */}
             <TextField
                 label = "Male: "
                 name = "male"
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
-                value = {male}
-                onChange = {this.handleChange}
+                value = {props.maleTotal}
+                onChange = {handleMaleTotalChange}
             />
         <br/>
             <TextField
@@ -120,6 +207,8 @@ function Event() {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
+                value = {props.femaleTotal}
+                onChange = {handleFemaleTotalChange}
             />
         <br/>
             <TextField
@@ -128,14 +217,8 @@ function Event() {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
-            />
-        <br/>
-            <TextField
-                label = "Non-Hispanic: "
-                name = "female"
-                margin = "normal"
-                variant = "outlined"
-                fullWidth
+                value = {props.otherTotal}
+                onChange = {handleOtherTotalChange}
             />
         <br/>
             <TextField
@@ -144,7 +227,20 @@ function Event() {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
+                value = {props.hispanicTotal}
+                onChange = {handleHispanicTotalChange}
             />
+        <br/>
+        <TextField
+            label = "Non-Hispanic: "
+            name = "female"
+            margin = "normal"
+            variant = "outlined"
+            fullWidth
+
+            value = {props.nonhispanicTotal}
+            onChange = {handleNonhispanicTotalChange}
+        />
        
         <br/>
             <TextField
@@ -153,18 +249,20 @@ function Event() {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
+                value = {props.unknownTotal}
+                onChange = {handleUnknownTotalChange}
             />
 
         {/* Grand Challenges */}
         <br/>
         <br/>
-            <Dropdown options={challenges} value={"Grand Challenges"} placeholder="Select an option" />
+            <Dropdown onChange = {handleChallengesChange} value = {props.challenges.challenges} options={challengesList} placeholder="Grand Challenges" />
         <br/>
 
         {/* Comments */}
         <h2>Comments:</h2>
         <div class="comments">
-            <textarea name="" cols="" rows="5"></textarea>
+            <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5"></textarea>
         </div>
 
         {/* Submit */}
@@ -172,13 +270,46 @@ function Event() {
             <br/>
             <div class = "submit-button">
             <Link to = "/event-summary">
-                <Button onClick = {()=> handleChange} color = "black" variant="contained">
-                    Submit
-                </Button>            
-            </Link>
+                    <Button color = "black" variant="contained">
+                        Submit
+                    </Button>            
+                </Link>
             </div>
         </Container>
     );
 }
 
-export default Event;
+
+const mapStateToProps = state => {
+    return {
+        counties: state.counties,
+        date: state.date,
+        maleTotal: state.maleTotal,
+        femaleTotal: state.femaleTotal,
+        otherTotal: state.otherTotal,
+        hispanicTotal: state.hispanicTotal,
+        nonhispanicTotal: state.nonhispanicTotal,
+        unknownTotal: state.unknownTotal,
+        comment: state.comment,
+        challenges: state.challenges,
+
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+return {
+    updateCounties: (counties) => dispatch(updateCounties(counties)),
+    updateDate: (date) => dispatch(updateDate(date)),
+    updateMaleTotal: (maleTotal) => dispatch(updateMaleTotal(maleTotal)),
+    updateFemaleTotal: (femaleTotal) => dispatch(updateFemaleTotal(femaleTotal)),
+    updateOtherTotal: (otherTotal) => dispatch(updateOtherTotal(otherTotal)),
+    updateHispanicTotal: (hispanicTotal) => dispatch(updateHispanicTotal(hispanicTotal)),
+    updateNonhispanicTotal: (nonhispanicTotal) => dispatch(updateNonhispanicTotal(nonhispanicTotal)),
+    updateUnknownTotal: (unknownTotal) => dispatch(updateUnknownTotal(unknownTotal)),
+    updateComment: (comment) => dispatch(updateComment(comment)),
+    updateChallenges: (challenges) => dispatch(updateChallenges(challenges)),
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Event);

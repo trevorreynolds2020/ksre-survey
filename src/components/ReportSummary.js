@@ -10,10 +10,15 @@ import './DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
 
-function EventSummary(props){
+function ReportSummary(props){
 
     var state = store.getState()
     
+    var hoursWorked = state.workHours.workHours
+    var sickOrVacation = state.sickOrVacation.sickOrVacation
+    var leaveHours = state.leaveHours.leaveHours
+    var miles = state.miles.miles
+    var inofficeOrTele = state.inofficeOrTele.inofficeOrTele
     var counties = state.counties.counties
     var countiesString = ""
     for(var i = 0; i < counties.length; i++){
@@ -21,32 +26,25 @@ function EventSummary(props){
     }
     countiesString = countiesString.slice(0, -2)
     var date = state.date.date.toString()
-    var male = state.male.maleTotal
-    var female = state.female.femaleTotal
-    var other = state.other.otherTotal
-    var hispanic = state.hispanic.hispanicTotal
-    var nonhispanic = state.nonhispanic.nonhispanicTotal
-    var unknown = state.unknown.unknownTotal
     var comment = state.comment.comment
 
     return(
 
         <Container maxWidth = "xs">
-        <h1>Summary: </h1>
+        <h1>Report Summary: </h1>
         <h2>Date: {date} </h2>
-        <h2>Counties: {countiesString} </h2>
-        <h2>Male: {male}</h2>
-        <h2>Female: {female}</h2>
-        <h2>Other: {other}</h2>
-        <h2>Hispanic: {hispanic}</h2>
-        <h2>Non-Hispanic: {nonhispanic}</h2>
-        <h2>Unknown: {unknown}</h2>
+        <h2>County: {countiesString} </h2>
+        <h2>Hours Worked: {hoursWorked}</h2>
+        <h2>Sick or Vacation: {sickOrVacation}</h2>
+        <h2>Leave Hours: {leaveHours}</h2>
+        <h2>Personal Miles: {miles}</h2>
+        <h2>Inoffice or Telecommunication: {inofficeOrTele}</h2>
         <h2>Comments: {comment}</h2>
 
         <br/>
         <br/>
         <div class = "">
-        <Link to = "/event">
+        <Link to = "/report">
             <Button color = "black" variant="contained">
                 Edit
             </Button>            
@@ -65,4 +63,4 @@ function EventSummary(props){
     )
 }
 
-export default EventSummary;
+export default ReportSummary;

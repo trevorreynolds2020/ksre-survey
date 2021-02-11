@@ -7,7 +7,6 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from 'react-redux';
 // import { initialState } from './reducers/reducer';
 // import { reducer } from './rootSlice';
-import reducer, {initialState} from './reducers/reducer'
 import store from './redux/store';
 
 

@@ -10,23 +10,14 @@ import './DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
 
-function EventSummary(props){
+function IndirectSummary(props){
 
     var state = store.getState()
     
-    var counties = state.counties.counties
-    var countiesString = ""
-    for(var i = 0; i < counties.length; i++){
-        countiesString += counties[i] + ", "
-    }
-    countiesString = countiesString.slice(0, -2)
     var date = state.date.date.toString()
-    var male = state.male.maleTotal
-    var female = state.female.femaleTotal
-    var other = state.other.otherTotal
-    var hispanic = state.hispanic.hispanicTotal
-    var nonhispanic = state.nonhispanic.nonhispanicTotal
-    var unknown = state.unknown.unknownTotal
+    var contact = state.methodOfContact.methodOfContact
+    var topic = state.topic.topic
+    var challenge = state.challenges.challenges
     var comment = state.comment.comment
 
     return(
@@ -34,19 +25,15 @@ function EventSummary(props){
         <Container maxWidth = "xs">
         <h1>Summary: </h1>
         <h2>Date: {date} </h2>
-        <h2>Counties: {countiesString} </h2>
-        <h2>Male: {male}</h2>
-        <h2>Female: {female}</h2>
-        <h2>Other: {other}</h2>
-        <h2>Hispanic: {hispanic}</h2>
-        <h2>Non-Hispanic: {nonhispanic}</h2>
-        <h2>Unknown: {unknown}</h2>
+        <h2>Method of Contact: {contact}</h2>
+        <h2>Topic: {topic}</h2>
+        <h2>Grand Challenges: {challenge}</h2>
         <h2>Comments: {comment}</h2>
 
         <br/>
         <br/>
         <div class = "">
-        <Link to = "/event">
+        <Link to = "/indirect-contacts">
             <Button color = "black" variant="contained">
                 Edit
             </Button>            
@@ -65,4 +52,4 @@ function EventSummary(props){
     )
 }
 
-export default EventSummary;
+export default IndirectSummary;

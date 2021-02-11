@@ -12,105 +12,110 @@ import 'react-dropdown/style.css';
 import './DirectContactFormat.css';
 //import {configureStore} from "react-redux";
 //import {connect} from "react-redux";
-import { updateName, } from "../redux/Name/name.actions";
 import { connect } from "react-redux";
+import { Button} from '@material-ui/core';
+import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import { updateName } from "../redux/Name/name.actions";
+import { updateCounties } from "../redux/Counties/counties.actions";
+import { updateDate } from '../redux/Date/date.actions';
+import { updateChallenges } from '../redux/Challenges/challenges.actions';
+
+import { updateGender } from '../redux/Gender/gender.actions';
+import { updateRace } from '../redux/Race/race.actions';
+import { updateEthnicity } from '../redux/Ethnicity/ethnicity.actions';
+
+import { updateComment } from '../redux/Comment/comment.actions';
+
+
+
+function DirectContacts(props){
+
+    const challengesList = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"];
+    const genderList = [ "Male", "Female", "other"];
+    const raceList = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
+    const ethnicityList = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
+
+    const [ name , setName ] = useState(null);
+    const [ counties , setCounties ] = useState(null);
+    const [ date , setDate ] = useState(null);
+    const [ challenges , setChallenges ] = useState(null);
+    const [ gender , setGender ] = useState(null);
+    const [ race , setRace ] = useState(null);
+    const [ ethnicity , setEthnicity ] = useState(null);
+    const [ comment , setComment ] = useState(null);
 
 
 
 
-import DispatchStuff from './DispatchStuff'
-
-
-class DirectContacts extends React.Component {
-
-    
-
-    
-    constructor(props){
-        super(props)
-        this.state = {
-            date: props.date || Date.now(),
-            name: props.name || "",
-            counties: [],
-            challenges: "",
-            gender: "",
-            race: "",
-            ethnicity: "",
-            comment: ""
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleDateChange = this.handleDateChange.bind(this)
-        this.handeCountiesSelect = this.handeCountiesSelect.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this);
+    function dispatchRedux(){
+        
     }
-    handleChange(event){
-        const name = event.target.name;
-        const value = event.target.type === "checkbox" ? event.target.checked: event.target.value
-        this.setState({[name]:value})
+
+    function handleNameChange(event){
+        console.log(event.target.value)
+        setName(event.target.value)
+        props.updateName(event.target.value)
     }
-    handleDateChange(date){
-        this.setState({date:date})
-    }
-    handleSubmit(event){
-        event.preventDefault();
-        //this.props.directContacts(this.state);
-        //console.log(this.state.name);
-        DispatchStuff(this.state.name);
-    }
-    handeCountiesSelect(event){
-        var counties = this.state.counties;
+
+    function handleCountiesChange(event){
+        var counties = props.counties.counties
         if(event.target.checked){
-            counties.push(event.target.value);
+            counties.push(event.target.value)
         }
         else{
             const index = counties.indexOf(event.target.value);
             counties.splice(index,1);
         }
-        this.setState({counties:counties});
+        console.log(counties)
+        // console.log(event.target.value)
+        setCounties(counties)
+        props.updateCounties(counties)
     }
 
-    dispatchRedux(){
-        const [ name , setName ] = useState(null);
-        setName(this.state.name)
-        updateName(name)
-
+    function handleDateChange(date){
+        setDate(date)
+        props.updateDate(date)
     }
 
+    function handleCommentChange(){
+        var comment = document.getElementById("comment-box").value
+        console.log(comment)
+        setComment(comment)
+        props.updateComment(comment)
+    }
+
+    function handleChallengesChange(event){
+        console.log('triggered')
+        console.log(event.value)
+        setChallenges(event.value)
+        props.updateChallenges(event.value)
+    }
     
-    render(){
-//    const [startDate, setSelectedDate] = useState(new Date());
-   // const dispatch = useDispatch();
-    //const history = useHistory(); 
-    //const comment = useSelector((state) => state.comment);
-   // const { register, handleSubmit } = useForm({ defaultValues: { comment } });
+    function handleGenderChange(event){
+        setGender(event.value)
+        props.updateGender(event.value)
+    }
 
- 
+    function handleRaceChange(event){
+        setRace(event.value)
+        props.updateRace(event.value)
+    }
 
+    function handleEthnicityChange(event){
+        setEthnicity(event.value)
+        props.updateEthnicity(event.value)
+    }
 
-    const challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"];
-    const gender = [ "Male", "Female", "other"];
-    const race = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
-    const ethnicity = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
+    return(
+        <Container>
+        <form onSubmit = {dispatchRedux}>
 
-   // const state = useSelector((state) => state);
-   require('react-dom');
-   window.React2 = require('react');
-   console.log(window.React1 === window.React2);
-
-
-    return (
-
-        
-      <Container>
-        <form onSubmit = {this.handleSubmit}>
-
-          <pre>{JSON.stringify(this.state, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
           <br/>
-          <h1>{this.state.name}</h1>
           <div className = "datePickerContainer">
             <DatePicker  
-                selected = {this.state.date} // current date in DatePicker
-                onChange = {this.handleDateChange} // when date changes update the in the DatePicker
+                selected = {props.date.date} // current date in DatePicker
+                onChange = {handleDateChange} // when date changes update the in the DatePicker
                 isClearable // X button - clears date
                 withPortal // cover screen with calender
                 margin = "normal"
@@ -118,7 +123,6 @@ class DirectContacts extends React.Component {
                 maxWidth = "auto"
                 id = "datepicker"
                 className = "datePicker"
-                
             />
 
             
@@ -133,13 +137,13 @@ class DirectContacts extends React.Component {
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
-                value = {this.state.name}
-                onChange = {this.handleChange}
+                value = {props.name.name}
+                onChange = {handleNameChange}
             />
 
             {/* Counties */}
             <br/>
-            <br/>
+            <br/> 
             <label class = "counties-visited">Counties Visited:</label>
             <div class = "counties-visited">
             <FormControl
@@ -154,8 +158,8 @@ class DirectContacts extends React.Component {
                     labelPlacement="start"
                     width= "20%"
                     value = "CR"
-                    checked = {this.state.counties.includes("CR")}
-                    onChange = {this.handeCountiesSelect}
+                    checked = {props.counties.counties.includes("CR")}
+                    onChange = {handleCountiesChange}
                     />
                     <FormControlLabel
                     control={<Checkbox color="primary" />}
@@ -163,8 +167,8 @@ class DirectContacts extends React.Component {
                     labelPlacement="start"
                     width= "20%"
                     value = "LB"
-                    checked = {this.state.counties.includes("LB")}
-                    onChange = {this.handeCountiesSelect}
+                    checked = {props.counties.counties.includes("LB")}
+                    onChange = {handleCountiesChange}
                     />
                     <FormControlLabel
                     control={<Checkbox color="primary" />}
@@ -172,8 +176,8 @@ class DirectContacts extends React.Component {
                     labelPlacement="start"
                     width= "20%"
                     value = "MG"
-                    checked = {this.state.counties.includes("MG")}
-                    onChange = {this.handeCountiesSelect}
+                    checked = {props.counties.counties.includes("MG")}
+                    onChange = {handleCountiesChange}
                     />
                     <FormControlLabel
                     control={<Checkbox color="primary" />}
@@ -181,35 +185,39 @@ class DirectContacts extends React.Component {
                     labelPlacement="start"
                     width= "20%"
                     value = "WL"
-                    checked = {this.state.counties.includes("WL")}
-                    onChange = {this.handeCountiesSelect}
+                    checked = {props.counties.counties.includes("WL")}
+                    onChange = {handleCountiesChange}
                     />
                 </FormGroup>
             </FormControl>
             </div>
 
-            {/* Grand Challenges, Gender, Race, Ethnicity*/}
+                       {/* Grand Challenges, Gender, Race, Ethnicity*/}
             <br/>
-            <Dropdown options={challenges} name="challenges" placeholder="Grand Challenges" />
+            <Dropdown onChange = {handleChallengesChange} value = {props.challenges.challenges} options={challengesList} placeholder="Grand Challenges" />
             <br/>
-            <Dropdown options={gender} value={"Gender"} name = "comment" placeholder="Select an option" />
+            <Dropdown onChange = {handleGenderChange} value = {props.gender.gender} options={genderList} value={"Gender"} name = "comment" placeholder="Select an option" />
             <br/>
-            <Dropdown options={race} value={"Race"} placeholder="Select an option" />
+            <Dropdown onChange = {handleRaceChange} value = {props.race.race} options={raceList} value={"Race"} placeholder="Select an option" />
             <br/>
-            <Dropdown options={ethnicity} value={"Ethnicity"} placeholder="Select an option" />
+            <Dropdown onChange = {handleEthnicityChange} value = {props.ethnicity.ethnicity} options={ethnicityList} value={"Ethnicity"} placeholder="Select an option" />
 
             {/* Comments */}
             <h2>Comments:</h2>
             <div class="comments">
-                <textarea name="comment" cols="" rows="5"></textarea>
+                <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5"></textarea>
             </div>
             
             {/* Submit */}
             <br/>
             <br/>
-            <div class = "submit-button" >
-            <input onlick = "dispatchRedux()" value = "Submit" type = "submit"></input> 
-            
+            <div>
+   
+                <Link to = "/direct-summary">
+                    <Button color = "black" variant="contained">
+                        Submit
+                    </Button>            
+                </Link>
             </div>
         
                 
@@ -217,24 +225,38 @@ class DirectContacts extends React.Component {
             </form>  
       </Container>
     );
-    }
-  }
-  
-  const mapStateToProps = state => {
+}
+
+const mapStateToProps = state => {
     return {
-    name: state.name.name,
-    
+        name: state.name,
+        counties: state.counties,
+        date: state.date,
+        challenges: state.challenges,
+        gender: state.gender,
+        race: state.race,
+        ethnicity: state.ethnicity,
+        comment: state.comment,
     }
 }
 
 const mapDispatchToProps = dispatch => {
 return {
-    updateName: (name) => dispatch(updateName(name))
-
+    updateName: (name) => dispatch(updateName(name)),
+    updateCounties: (counties) => dispatch(updateCounties(counties)),
+    updateDate: (date) => dispatch(updateDate(date)),
+    updateChallenges: (challenges) => dispatch(updateChallenges(challenges)),
+    updateGender: (gender) => dispatch(updateGender(gender)),
+    updateRace: (race) => dispatch(updateRace(race)),
+    updateEthnicity: (ethnicity) => dispatch(updateEthnicity(ethnicity)),
+    updateComment: (comment) => dispatch(updateComment(comment)),
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DirectContacts);
+
+
+
 // import React, {useState } from 'react'
 // import Container from '@material-ui/core/Container';
 // import TextField from '@material-ui/core/TextField';

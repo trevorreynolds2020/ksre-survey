@@ -1,0 +1,3 @@
+const UPDATEMILES = 'UPDATEMILES'
+
+export default UPDATEMILES;
