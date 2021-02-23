@@ -17,11 +17,13 @@ import hispanicReducer from './Hispanic/hispanic.reducers';
 import nonhispanicReducer from './Nonhispanic/nonhispanic.reducers';
 import otherReducer from './Other/other.reducers';
 import unknownReducer from './Unknown/unknown.reducers';
-import inofficeOrTeleReducer from './InofficeOrTele/inoffice-or-tele.reducers';
+import inofficeOrRemoteReducer from './InofficeOrRemote/inoffice-or-remote.reducers';
 import leaveHoursReducer from './LeaveHours/leave-hours.reducers';
 import milesReducer from './Miles/miles.reducers';
 import sickOrVacationReducer from './SickOrVacation/sick-or-vacation.reducers';
 import workHoursReducer from './WorkHours/work-hours.reducers';
+import csvDataReducer from './csvData/csvData.reducers';
+import directContactDataReducer from './DirectContactData/direct-contact-data.reducers';
 
 
 
@@ -46,12 +48,13 @@ const rootReducer = combineReducers({
     nonhispanic: nonhispanicReducer,
     other: otherReducer,
     unknown: unknownReducer,
-    inofficeOrTele: inofficeOrTeleReducer,
+    inofficeOrRemote: inofficeOrRemoteReducer,
     leaveHours: leaveHoursReducer,
     miles: milesReducer,
     sickOrVacation: sickOrVacationReducer,
     workHours: workHoursReducer,
-
+    csvData: csvDataReducer,
+    directContactData: directContactDataReducer
 });
 
 export default rootReducer;

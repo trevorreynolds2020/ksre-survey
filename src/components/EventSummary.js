@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState } from 'react'
 import Container from '@material-ui/core/Container';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Button} from '@material-ui/core';
@@ -9,8 +9,12 @@ import 'react-dropdown/style.css';
 import './DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
+import { updateCSVData } from '../redux/csvData/csvData.actions';
+
 
 function EventSummary(props){
+
+    const [ csvData , setCSVData ] = useState(null);
 
     var state = store.getState()
     
@@ -28,6 +32,39 @@ function EventSummary(props){
     var nonhispanic = state.nonhispanic.nonhispanicTotal
     var unknown = state.unknown.unknownTotal
     var comment = state.comment.comment
+
+    function updateCSV(){
+        var entry = [
+            "E", //type
+            date, //date
+            null, //name
+            null, //contact
+            null, //gender
+            null, //race
+            null, //ethnicity
+            countiesString, //counties,
+            null, //challenges,
+            null, //topic
+            male, //males
+            female, //females
+            other, //other
+            hispanic, //hispanic
+            nonhispanic, //non-hispanic
+            unknown, //unknown
+            null, //hours worked
+            null, //sick or vacation
+            null, //leave hours
+            null, //miles driven
+            null, //inoffice or remote
+            comment //comments
+        ]
+
+        //Current CSV
+        var csv = props.csvData.csvData
+        csv.push(entry)
+        setCSVData(csv)
+        props.updateCSVData(csv)
+    }
 
     return(
 
@@ -56,7 +93,7 @@ function EventSummary(props){
             <br/>
             <div class = "">
             <Link to = "/">
-                <Button color = "black" variant="contained">
+                <Button color = "black" variant="contained" onClick={()=>{updateCSV()}}>
                     Submit
                 </Button>            
             </Link>
@@ -65,4 +102,16 @@ function EventSummary(props){
     )
 }
 
-export default EventSummary;
+const mapStateToProps = state => {
+    return {
+        csvData: state.csvData,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateCSVData: (csvData) => dispatch(updateCSVData(csvData)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventSummary);

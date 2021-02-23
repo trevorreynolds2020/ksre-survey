@@ -1,18 +1,18 @@
-import UPDATEINOFFICEORTELE from './inoffice-or-tele.types'
+import UPDATEINOFFICEORREMOTE from './inoffice-or-remote.types'
 
 
 const INITIAL_STATE = {
-    inofficeOrTele: "",
+    inofficeOrRemote: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
 
-        case UPDATEINOFFICEORTELE:
+        case UPDATEINOFFICEORREMOTE:
             return{
                 ...state, 
-                inofficeOrTele: action.payload,
+                inofficeOrRemote: action.payload,
             }
             
         default: return state;

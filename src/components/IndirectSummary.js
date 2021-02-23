@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState } from 'react'
 import Container from '@material-ui/core/Container';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Button} from '@material-ui/core';
@@ -9,8 +9,12 @@ import 'react-dropdown/style.css';
 import './DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
+import { updateCSVData } from '../redux/csvData/csvData.actions';
+
 
 function IndirectSummary(props){
+
+    const [ csvData , setCSVData ] = useState(null);
 
     var state = store.getState()
     
@@ -20,6 +24,38 @@ function IndirectSummary(props){
     var challenge = state.challenges.challenges
     var comment = state.comment.comment
 
+    function updateCSV(){
+        var entry = [
+            "ID", //type
+            date, //date
+            null, //name
+            contact, //contact
+            null, //gender
+            null, //race
+            null, //ethnicity
+            null, //counties,
+            challenge, //challenge
+            topic, //topic
+            null, //males
+            null, //females
+            null, //other
+            null, //hispanic
+            null, //non-hispanic
+            null, //unknown
+            null, //hours worked
+            null, //sick or vacation
+            null, //leave hours
+            null, //miles driven
+            null, //inoffice or remote
+            comment //comments
+        ]
+    
+        //Current CSV
+        var csv = props.csvData.csvData
+        csv.push(entry)
+        setCSVData(csv)
+        props.updateCSVData(csv)    
+    }
     return(
 
         <Container maxWidth = "xs">
@@ -43,13 +79,25 @@ function IndirectSummary(props){
             <br/>
             <div class = "">
             <Link to = "/">
-                <Button color = "black" variant="contained">
+                <Button color = "black" variant="contained" onClick={()=>{updateCSV()}}>
                     Submit
-                </Button>            
+                </Button>                      
             </Link>
         </div>
     </Container>
     )
 }
 
-export default IndirectSummary;
+const mapStateToProps = state => {
+    return {
+        csvData: state.csvData,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateCSVData: (csvData) => dispatch(updateCSVData(csvData)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndirectSummary);

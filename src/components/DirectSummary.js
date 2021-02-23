@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState } from 'react'
 import Container from '@material-ui/core/Container';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Button} from '@material-ui/core';
@@ -9,8 +9,14 @@ import 'react-dropdown/style.css';
 import './DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
+import { updateCSVData } from '../redux/csvData/csvData.actions';
+import { updateDirectContactData } from '../redux/DirectContactData/direct-contact-data.actions';
+
 
 function DirectSummary(props){
+
+    const [ updateDirectContactData , setDirectContactData ] = useState(null);
+
 
     var state = store.getState()
     
@@ -27,6 +33,28 @@ function DirectSummary(props){
     var race = state.race.race
     var ethnicity = state.ethnicity.ethnicity
     var comment = state.comment.comment
+
+    function updateExcel(){
+
+        // Entry user is currently making
+        var entry = 
+        [
+            {value: date }, 
+            {value: name, style: {font: {shadow: true}}},
+            {value: countiesString, style: {font: {shadow: true}}},
+            {value: challenge, style: {font: {shadow: true}}},
+            {value: gender, style: {font: {shadow: true}}},
+            {value: race, style: {font: {shadow: true}}},
+            {value: ethnicity, style: {font: {shadow: true}}},
+            {value: comment, style: {font: {shadow: true}}},
+        ]
+
+        // Adds entry to the array of entries
+        var data = props.directContactData.directContactData
+        data[0]['data'].push(entry)
+        setDirectContactData(data)
+        props.updateDirectContactData(data)
+    }
 
     return(
 
@@ -54,7 +82,7 @@ function DirectSummary(props){
             <br/>
             <div class = "">
             <Link to = "/">
-                <Button color = "black" variant="contained">
+                <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
                     Submit
                 </Button>            
             </Link>
@@ -63,4 +91,16 @@ function DirectSummary(props){
     )
 }
 
-export default DirectSummary;
+const mapStateToProps = state => {
+    return {
+        directContactData: state.directContactData,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateDirectContactData: (directContactData) => dispatch(updateDirectContactData(directContactData)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DirectSummary);

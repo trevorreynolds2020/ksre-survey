@@ -31,7 +31,7 @@ function IndirectContacts(props){
 
 
     const [startDate, setSelectedDate] = useState(new Date());
-    const MethodOfContact = ["Phone","Email","Spontaneous"]
+    const MethodOfContact = ["Phone","Email","Direct"]
     const Challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
 
     const [ date , setDate ] = useState(null);

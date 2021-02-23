@@ -6,10 +6,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button, FormControl, FormGroup } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
 import './ReportStyle.css';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
@@ -19,7 +17,7 @@ import { updateWorkHours } from "../redux/WorkHours/work-hours.actions";
 import { updateSickOrVacation } from "../redux/SickOrVacation/sick-or-vacation.actions";
 import { updateLeaveHours } from "../redux/LeaveHours/leave-hours.actions";
 import { updateMiles } from "../redux/Miles/miles.actions";
-import { updateInofficeOrTele } from "../redux/InofficeOrTele/inoffice-or-tele.actions";
+import { updateInofficeOrRemote } from "../redux/InofficeOrRemote/inoffice-or-remote.actions";
 import { updateComment } from '../redux/Comment/comment.actions';
 
 import { connect } from "react-redux";
@@ -37,7 +35,7 @@ function Report(props){
     const [ sickOrVacation , setSickOrVacation ] = useState(null);
     const [ leaveHours , setLeaveHours ] = useState(null);
     const [ miles , setMiles ] = useState(null);
-    const [ inofficeOrTele , setInofficeOrTele ] = useState(null);
+    const [ inofficeOrRemote , setInofficeOrRemote ] = useState(null);
     const [ comment , setComment ] = useState(null);
 
     function handleDateChange(date){
@@ -82,9 +80,9 @@ function Report(props){
         props.updateMiles(event.target.value)
     }
 
-    function handleInofficeOrTeleChange(event){
-        setInofficeOrTele(event.target.value)
-        props.updateInofficeOrTele(event.target.value)
+    function handleInofficeOrRemoteChange(event){
+        setInofficeOrRemote(event.target.value)
+        props.updateInofficeOrRemote(event.target.value)
     }
 
     function handleCommentChange(){
@@ -211,11 +209,11 @@ function Report(props){
                 onChange = {handleMilesChange}
             />
 
-            {/* Inoffice or Telecommunication */}
+            {/* Inoffice or Remote */}
             <FormControl component="fieldset">
                 <RadioGroup row aria-label="position" name="position" defaultValue="top">
-                    <FormControlLabel onChange = {handleInofficeOrTeleChange} value="inoffice" control={<Radio color="primary" />} label="Inoffice" />
-                    <FormControlLabel onChange = {handleInofficeOrTeleChange} value="telecommunication" control={<Radio color="primary" />} label="Telecommunication" />
+                    <FormControlLabel onChange = {handleInofficeOrRemoteChange} value="inoffice" control={<Radio color="primary" />} label="Inoffice" />
+                    <FormControlLabel onChange = {handleInofficeOrRemoteChange} value="remote" control={<Radio color="primary" />} label="Remote" />
                 </RadioGroup>
             </FormControl>
 
@@ -236,7 +234,7 @@ function Report(props){
             <div class = "submit-button">
             <Link to = "/report-summary">
                 <Button color = "black" variant="contained">
-                            Submit
+                        Submit
                 </Button>            
             </Link>
             </div>
@@ -257,22 +255,21 @@ const mapStateToProps = state => {
         sickOrVacation: state.sickOrVacation,
         leaveHours: state.leaveHours,
         miles: state.miles,
-        inofficeOrTele: state.inofficeOrTele,
+        inofficeOrRemote: state.inofficeOrRemote,
         comment: state.comment,
     }
 }
 
 const mapDispatchToProps = dispatch => {
-return {
-    updateCounties: (counties) => dispatch(updateCounties(counties)),
-    updateDate: (date) => dispatch(updateDate(date)),
-    updateWorkHours: (workHours) => dispatch(updateWorkHours(workHours)),
-    updateSickOrVacation: (sickOrVacation) => dispatch(updateSickOrVacation(sickOrVacation)),
-    updateLeaveHours: (leaveHours) => dispatch(updateLeaveHours(leaveHours)),
-    updateMiles: (miles) => dispatch(updateMiles(miles)),
-    updateInofficeOrTele: (inofficeOrTele) => dispatch(updateInofficeOrTele(inofficeOrTele)),
-    updateComment: (comment) => dispatch(updateComment(comment)),
-
+    return {
+        updateCounties: (counties) => dispatch(updateCounties(counties)),
+        updateDate: (date) => dispatch(updateDate(date)),
+        updateWorkHours: (workHours) => dispatch(updateWorkHours(workHours)),
+        updateSickOrVacation: (sickOrVacation) => dispatch(updateSickOrVacation(sickOrVacation)),
+        updateLeaveHours: (leaveHours) => dispatch(updateLeaveHours(leaveHours)),
+        updateMiles: (miles) => dispatch(updateMiles(miles)),
+        updateInofficeOrRemote: (inofficeOrRemote) => dispatch(updateInofficeOrRemote(inofficeOrRemote)),
+        updateComment: (comment) => dispatch(updateComment(comment)),
     }
 }
 
