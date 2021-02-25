@@ -1,5 +1,30 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
+@media(max-width: 600px) {
+  body {
+    background-color: lightpurple;
+  }
+  h1{
+    display: none;
+  }
+  h2{
+    font-size: 6.5vh;
+    color: purple;
+  }
+}
+
+@media(min-width: 600px) {
+  body {
+    background-color: lightpurple;
+  }
+  h1{
+    display: inline;
+  }
+  h2{
+    display: none;
+  }
+}
+
 body{
   font-family: Lato, sans-serif;
 

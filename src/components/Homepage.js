@@ -36,11 +36,15 @@ function Homepage(props){
     return(
 
         <Container maxWidth = "xs">
+                            
+
         {/* <img src = "KSRE_logo.jpg" alt="cat"/>
         <Img src={'KSRE_logo.jpg'}></Img> */}
+
         <div class = "main-menu">
-            <h1>KSU Research</h1>
+        <h1>KSU Research</h1>
         <ul>
+        <h2>KSU Research</h2>
         <li>
             <Link to = "/report">
                 Report          
