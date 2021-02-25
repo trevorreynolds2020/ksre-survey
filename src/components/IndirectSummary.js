@@ -9,12 +9,13 @@ import 'react-dropdown/style.css';
 import './DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
-import { updateCSVData } from '../redux/csvData/csvData.actions';
+// import { updateCSVData } from '../redux/csvData/csvData.actions';
+import { updateIndirectContactData } from '../redux/IndirectContactData/indirect-contact-data.actions';
 
 
 function IndirectSummary(props){
 
-    const [ csvData , setCSVData ] = useState(null);
+    const [ updateIndirectContactData , setIndirectContactData ] = useState(null);
 
     var state = store.getState()
     
@@ -24,37 +25,22 @@ function IndirectSummary(props){
     var challenge = state.challenges.challenges
     var comment = state.comment.comment
 
-    function updateCSV(){
-        var entry = [
-            "ID", //type
-            date, //date
-            null, //name
-            contact, //contact
-            null, //gender
-            null, //race
-            null, //ethnicity
-            null, //counties,
-            challenge, //challenge
-            topic, //topic
-            null, //males
-            null, //females
-            null, //other
-            null, //hispanic
-            null, //non-hispanic
-            null, //unknown
-            null, //hours worked
-            null, //sick or vacation
-            null, //leave hours
-            null, //miles driven
-            null, //inoffice or remote
-            comment //comments
+    function updateExcel(){
+
+        var entry = 
+        [
+            {value: date }, 
+            {value: contact, style: {font: {shadow: true}}},
+            {value: topic, style: {font: {shadow: true}}},
+            {value: challenge, style: {font: {shadow: true}}},
+            {value: comment, style: {font: {shadow: true}}},
         ]
     
-        //Current CSV
-        var csv = props.csvData.csvData
-        csv.push(entry)
-        setCSVData(csv)
-        props.updateCSVData(csv)    
+       // Adds entry to the array of entries
+       var data = props.indirectContactData.indirectContactData
+       data[0]['data'].push(entry)
+       setIndirectContactData(data)
+       props.updateIndirectContactData(data) 
     }
     return(
 
@@ -79,7 +65,7 @@ function IndirectSummary(props){
             <br/>
             <div class = "">
             <Link to = "/">
-                <Button color = "black" variant="contained" onClick={()=>{updateCSV()}}>
+                <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
                     Submit
                 </Button>                      
             </Link>
@@ -90,13 +76,13 @@ function IndirectSummary(props){
 
 const mapStateToProps = state => {
     return {
-        csvData: state.csvData,
+        indirectContactData: state.indirectContactData,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateCSVData: (csvData) => dispatch(updateCSVData(csvData)),
+        updateIndirectContactData: (indirectContactData) => dispatch(updateIndirectContactData(indirectContactData)),
     }
 }
 

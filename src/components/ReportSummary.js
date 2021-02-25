@@ -8,14 +8,15 @@ import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
 import './DirectContactFormat.css';
 import {connect} from "react-redux";
-
 import { updateCSVData } from '../redux/csvData/csvData.actions';
 import store from '../redux/store'
 // import { TextsmsTwoTone } from '@material-ui/icons';
+import { updateReportData } from '../redux/ReportData/report-data.actions';
+
 
 function ReportSummary(props){
 
-    const [ csvData , setCSVData ] = useState(null);
+    const [ updateReportData , setReportData ] = useState(null);
 
     var state = store.getState()
     
@@ -33,38 +34,25 @@ function ReportSummary(props){
     var date = state.date.date.toString()
     var comment = state.comment.comment
 
-    function updateCSV(){
+    function updateExcel(){
         // New entry
-        //csvData: [["Type", "Date", "Name","Contact","Gender","Race","Ethnicity","Counties", "Challenges","Topic","Males","Females","Other","Hispanic","Non-Hispanic","Unknown","Hours Worked","Sick or Vacation","Leave Hours","Miles Driven","Remote","Comments"]],
-        var entry = [
-            "R", //type
-            date, //date
-            null, //name
-            null, //contact
-            null, //gender
-            null, //race
-            null, //ethnicity
-            countiesString, //counties,
-            null, //challenges,
-            null, //topic            
-            null, //males
-            null, //females
-            null, //other
-            null, //hispanic
-            null, //non-hispanic
-            null, //unknown
-            hoursWorked, //hours worked
-            sickOrVacation, //sick or vacation
-            leaveHours, //leave hours
-            miles, //miles driven
-            inofficeOrRemote, //inoffice or remote
-            comment //comments
+        var entry = 
+        [
+            {value: date }, 
+            {value: countiesString, style: {font: {shadow: true}}},
+            {value: hoursWorked, style: {font: {shadow: true}}},
+            {value: sickOrVacation, style: {font: {shadow: true}}},
+            {value: leaveHours, style: {font: {shadow: true}}},
+            {value: miles, style: {font: {shadow: true}}},
+            {value: inofficeOrRemote, style: {font: {shadow: true}}},
+            {value: comment, style: {font: {shadow: true}}},
         ]
-        //Current CSV
-        var csv = props.csvData.csvData
-        csv.push(entry)
-        setCSVData(csv)
-        props.updateCSVData(csv)
+        
+        // Adds entry to the array of entries
+       var data = props.reportData.reportData
+       data[0]['data'].push(entry)
+       setReportData(data)
+       props.updateReportData(data) 
     }
 
     return(
@@ -93,7 +81,7 @@ function ReportSummary(props){
             <br/>
             <div class = "">
             <Link to = "/">
-                <Button color = "black" variant="contained" onClick={()=>{updateCSV()}}>
+                <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
                     Submit
                 </Button>            
             </Link>
@@ -104,13 +92,13 @@ function ReportSummary(props){
 
 const mapStateToProps = state => {
     return {
-        csvData: state.csvData,
+        reportData: state.reportData,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateCSVData: (csvData) => dispatch(updateCSVData(csvData)),
+        updateReportData: (reportData) => dispatch(updateReportData(reportData)),
     }
 }
 

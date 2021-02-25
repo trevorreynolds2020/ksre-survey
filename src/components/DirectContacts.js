@@ -107,7 +107,7 @@ function DirectContacts(props){
     }
 
     return(
-        <Container>
+        <Container maxWidth = "xs">
         <form onSubmit = {dispatchRedux}>
 
           {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}

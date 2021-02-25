@@ -23,7 +23,11 @@ import milesReducer from './Miles/miles.reducers';
 import sickOrVacationReducer from './SickOrVacation/sick-or-vacation.reducers';
 import workHoursReducer from './WorkHours/work-hours.reducers';
 import csvDataReducer from './csvData/csvData.reducers';
+import reportDataReducer from './ReportData/report-data.reducers';
 import directContactDataReducer from './DirectContactData/direct-contact-data.reducers';
+import indirectContactDataReducer from './IndirectContactData/indirect-contact-data.reducers';
+import eventDataReducer from './EventData/event-data.reducers';
+
 
 
 
@@ -54,7 +58,10 @@ const rootReducer = combineReducers({
     sickOrVacation: sickOrVacationReducer,
     workHours: workHoursReducer,
     csvData: csvDataReducer,
-    directContactData: directContactDataReducer
+    reportData: reportDataReducer,
+    directContactData: directContactDataReducer,
+    indirectContactData: indirectContactDataReducer,
+    eventData: eventDataReducer,
 });
 
 export default rootReducer;
