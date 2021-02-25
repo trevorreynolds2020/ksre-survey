@@ -39,6 +39,7 @@ function Homepage(props){
         {/* <img src = "KSRE_logo.jpg" alt="cat"/>
         <Img src={'KSRE_logo.jpg'}></Img> */}
         <div class = "main-menu">
+            <h1>KSU Research</h1>
         <ul>
         <li>
             <Link to = "/report">

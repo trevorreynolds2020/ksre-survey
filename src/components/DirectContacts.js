@@ -19,11 +19,9 @@ import { updateName } from "../redux/Name/name.actions";
 import { updateCounties } from "../redux/Counties/counties.actions";
 import { updateDate } from '../redux/Date/date.actions';
 import { updateChallenges } from '../redux/Challenges/challenges.actions';
-
 import { updateGender } from '../redux/Gender/gender.actions';
 import { updateRace } from '../redux/Race/race.actions';
 import { updateEthnicity } from '../redux/Ethnicity/ethnicity.actions';
-
 import { updateComment } from '../redux/Comment/comment.actions';
 
 
@@ -108,6 +106,7 @@ function DirectContacts(props){
 
     return(
         <Container maxWidth = "xs">
+            <h1>Direct Contact</h1>
         <form onSubmit = {dispatchRedux}>
 
           {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
