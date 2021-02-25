@@ -7,12 +7,13 @@ import 'react-dropdown/style.css';
 import './DirectContactFormat.css';
 import { updateCSVData } from '../redux/csvData/csvData.actions';
 import store from '../redux/store'
-
-
-
+import './Site.css';
+import './KSRE_logo.jpg';
 import { CSVLink, CSVDownload } from "react-csv";
 import {ExcelFile, ExcelSheet} from "react-export-excel";
 import ReactExport from 'react-export-excel';
+import {Img} from 'react-image'
+
 
 import { connect } from "react-redux";
 
@@ -33,11 +34,49 @@ function Homepage(props){
     
 
     return(
-        <Container maxWidth = "xs">
 
+        <Container maxWidth = "xs">
+        {/* <img src = "KSRE_logo.jpg" alt="cat"/>
+        <Img src={'KSRE_logo.jpg'}></Img> */}
+        <div class = "main-menu">
+        <ul>
+        <li>
+            <Link to = "/report">
+                Report          
+            </Link>
+        </li>
+        <br/>
+        <li>
+            <Link to = "/direct-contacts">
+                Direct Contact
+            </Link>
+        </li>
+        <br/>
+        <li>
+            <Link to = "/indirect-contacts">
+                Indirect Contact         
+            </Link>
+        </li>
+        <br/>
+        <li>
+            <Link to = "/event">
+                Event
+            </Link>
+        </li>
+        <br/>
+        <li>
+            <ExcelFile element={<a>Download Excel</a>}>
+                    <ExcelSheet dataSet={reportData} name="Report"/>
+                    <ExcelSheet dataSet={directData} name="Direct Contacts"/>
+                    <ExcelSheet dataSet={indirectData} name="Indirect Contact"/>
+            </ExcelFile>
+        </li>
+        </ul>
+
+        </div>
         {/* Add settings with logout option */}
 
-        {/* Submit */}
+        {/* Submit
         <br/>
             
             <br/>
@@ -84,9 +123,10 @@ function Homepage(props){
                     <ExcelSheet dataSet={indirectData} name="Indirect Contact"/>
                 </ExcelFile>
             </div>
-        <br/>
+        <br/> */}
  
         </Container>
+        
     )
 }
 
