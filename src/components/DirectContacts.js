@@ -32,6 +32,7 @@ function DirectContacts(props){
     const genderList = [ "Male", "Female", "other"];
     const raceList = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
     const ethnicityList = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
+    const MethodOfContact = ["In-person", "Email", "Phone", "Video"]
 
     const [ name , setName ] = useState(null);
     const [ counties , setCounties ] = useState(null);
