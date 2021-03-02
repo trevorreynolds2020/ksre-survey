@@ -2,7 +2,7 @@ import UPDATENONHISPANICTOTAL from './nonhispanic.types'
 
 
 const INITIAL_STATE = {
-    nonhispanicTotal: null,
+    nonhispanicTotal: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

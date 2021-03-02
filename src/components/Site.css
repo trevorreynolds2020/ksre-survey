@@ -1,26 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
+/* Mobile */
 @media(max-width: 600px) {
-  body {
-    background-color: lightpurple;
-  }
-  h1{
+
+  #desktop-title{
     display: none;
   }
-  h2{
+  #title{
     font-size: 6.5vh;
     color: purple;
   }
 }
 
+/* Desktop */
 @media(min-width: 600px) {
-  body {
-    background-color: lightpurple;
-  }
-  h1{
+
+  #desktop-title{
     display: inline;
   }
-  h2{
+  #title{
     display: none;
   }
 }

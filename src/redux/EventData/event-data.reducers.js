@@ -4,7 +4,7 @@ import UPDATEEVENTDATA from './event-data.types'
 const INITIAL_STATE = {
     eventData:[
         {
-            columns: ["Date", "Name", "Counties","Grand Challenges","Gender","Race","Ethnicity","Comments"],
+            columns: ["Date","Counties", "Male", "Female","Other","Hispanic","Non-Hispanic","Unknown","Challenge","Comment"],
             data: []
         }
     ]

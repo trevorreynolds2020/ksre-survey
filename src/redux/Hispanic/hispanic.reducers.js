@@ -2,7 +2,7 @@ import UPDATEHISPANICTOTAL from './hispanic.types'
 
 
 const INITIAL_STATE = {
-    hispanicTotal: null,
+    hispanicTotal: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

@@ -2,7 +2,7 @@ import UPDATEMILES from './miles.types'
 
 
 const INITIAL_STATE = {
-    miles: null,
+    miles: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

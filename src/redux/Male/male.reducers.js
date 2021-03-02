@@ -2,7 +2,7 @@ import UPDATEMALETOTAL from './male.types'
 
 
 const INITIAL_STATE = {
-    maleTotal: null,
+    maleTotal: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
