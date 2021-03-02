@@ -2,7 +2,7 @@ import UPDATEOTHERTOTAL from './other.types'
 
 
 const INITIAL_STATE = {
-    otherTotal: null,
+    otherTotal: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

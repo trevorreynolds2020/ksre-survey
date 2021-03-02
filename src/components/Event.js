@@ -31,7 +31,6 @@ function Event(props) {
 
     const [startDate, setSelectedDate] = useState(new Date());
     const challengesList = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
-    // const [{male},dispatch] = useStateValue();
 
     const [ date , setDate ] = useState(null);
     const [ counties , setCounties ] = useState(null);
@@ -292,7 +291,6 @@ const mapStateToProps = state => {
         unknownTotal: state.unknownTotal,
         comment: state.comment,
         challenges: state.challenges,
-
     }
 }
 

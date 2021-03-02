@@ -2,7 +2,7 @@ import UPDATEUNKNOWNTOTAL from './unknown.types'
 
 
 const INITIAL_STATE = {
-    unknownTotal: null,
+    unknownTotal: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

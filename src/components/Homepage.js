@@ -31,7 +31,8 @@ function Homepage(props){
     var reportData = state.reportData.reportData
     var directData = state.directContactData.directContactData
     var indirectData = state.indirectContactData.indirectContactData
-    
+    var eventData = state.eventData.eventData
+
 
     return(
 
@@ -42,9 +43,9 @@ function Homepage(props){
         <Img src={'KSRE_logo.jpg'}></Img> */}
 
         <div class = "main-menu">
-        <h1>KSU Research</h1>
+        <h1 id = 'desktop-title'>KSU Research</h1>
         <ul>
-        <h2>KSU Research</h2>
+        <h2 id = 'title'>KSU Research</h2>
         <li>
             <Link to = "/report">
                 Report          
@@ -74,61 +75,12 @@ function Homepage(props){
                     <ExcelSheet dataSet={reportData} name="Report"/>
                     <ExcelSheet dataSet={directData} name="Direct Contacts"/>
                     <ExcelSheet dataSet={indirectData} name="Indirect Contact"/>
+                    <ExcelSheet dataSet={eventData} name="Event"/>
             </ExcelFile>
         </li>
         </ul>
 
         </div>
-        {/* Add settings with logout option */}
-
-        {/* Submit
-        <br/>
-            
-            <br/>
-            <div class = "">
-            <Link to = "/report">
-                <Button color = "black" variant="contained">
-                    Report
-                </Button>            
-            </Link>
-            </div>
-        <br/>
-            <br/>
-            <div class = "">
-            <Link to = "/direct-contacts">
-                <Button color = "black" variant="contained">
-                    Direct Contact
-                </Button>            
-            </Link>
-            </div>
-        <br/>
-            <br/>
-            <div class = "">
-            <Link to = "/indirect-contacts">
-                <Button color = "black" variant="contained">
-                    Indirect Contact
-                </Button>            
-            </Link>
-            </div>
-        <br/>
-            <br/>
-            <div class = "">
-            <Link to = "/event">
-                <Button color = "black" variant="contained">
-                    Event
-                </Button>            
-            </Link>
-            </div>
-            
-
-            <div>
-                <ExcelFile element={<button>Download Excel</button>}>
-                    <ExcelSheet dataSet={reportData} name="Report"/>
-                    <ExcelSheet dataSet={directData} name="Direct Contacts"/>
-                    <ExcelSheet dataSet={indirectData} name="Indirect Contact"/>
-                </ExcelFile>
-            </div>
-        <br/> */}
  
         </Container>
         

@@ -2,7 +2,7 @@ import UPDATELEAVEHOURS from './leave-hours.types'
 
 
 const INITIAL_STATE = {
-    leaveHours: null,
+    leaveHours: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

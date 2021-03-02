@@ -10,75 +10,112 @@ import './DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
 import { updateCSVData } from '../redux/csvData/csvData.actions';
+import { updateEventData } from '../redux/EventData/event-data.actions';
 
+import { updateDate } from '../redux/Date/date.actions';
+import { updateCounties } from "../redux/Counties/counties.actions";
+import { updateMaleTotal } from '../redux/Male/male.actions';
+import { updateFemaleTotal } from '../redux/Female/female.actions';
+import { updateOtherTotal } from '../redux/Other/other.actions';
+import { updateHispanicTotal } from '../redux/Hispanic/hispanic.actions';
+import { updateNonhispanicTotal } from '../redux/Nonhispanic/nonhispanic.actions';
+import { updateUnknownTotal } from '../redux/Unknown/unknown.actions';
+import { updateChallenges } from '../redux/Challenges/challenges.actions';
+import { updateComment } from '../redux/Comment/comment.actions';
 
 function EventSummary(props){
 
-    const [ csvData , setCSVData ] = useState(null);
+    const [ updateEventData , setEventData ] = useState(null);
+
+    const [ date , setDate ] = useState(null);
+    const [ counties , setCounties ] = useState(null);
+    const [ maleTotal , setMaleTotal ] = useState(null);
+    const [ femaleTotal , setFemaleTotal ] = useState(null);
+    const [ otherTotal , setOtherTotal ] = useState(null);
+    const [ hispanicTotal , setHispanicTotal ] = useState(null);
+    const [ nonhispanicTotal , setNonhispanicTotal ] = useState(null);
+    const [ unknownTotal , setUnknownTotal ] = useState(null);
+    const [ challenges , setChallenges ] = useState(null);
+    const [ comment , setComment ] = useState(null);
 
     var state = store.getState()
     
-    var counties = state.counties.counties
+    var countiesSubmit = state.counties.counties
     var countiesString = ""
-    for(var i = 0; i < counties.length; i++){
-        countiesString += counties[i] + ", "
+    for(var i = 0; i < countiesSubmit.length; i++){
+        countiesString += countiesSubmit[i] + ", "
     }
     countiesString = countiesString.slice(0, -2)
-    var date = state.date.date.toString()
-    var male = state.male.maleTotal
-    var female = state.female.femaleTotal
-    var other = state.other.otherTotal
-    var hispanic = state.hispanic.hispanicTotal
-    var nonhispanic = state.nonhispanic.nonhispanicTotal
-    var unknown = state.unknown.unknownTotal
-    var comment = state.comment.comment
+    var dateSubmit = state.date.date.toString()
+    var maleSubmit = state.male.maleTotal
+    var femaleSubmit = state.female.femaleTotal
+    var otherSubmit = state.other.otherTotal
+    var hispanicSubmit = state.hispanic.hispanicTotal
+    var nonhispanicSubmit = state.nonhispanic.nonhispanicTotal
+    var unknownSubmit = state.unknown.unknownTotal
+    var challengeSubmit = state.challenges.challenges
+    var commentSubmit = state.comment.comment
 
-    function updateCSV(){
-        var entry = [
-            "E", //type
-            date, //date
-            null, //name
-            null, //contact
-            null, //gender
-            null, //race
-            null, //ethnicity
-            countiesString, //counties,
-            null, //challenges,
-            null, //topic
-            male, //males
-            female, //females
-            other, //other
-            hispanic, //hispanic
-            nonhispanic, //non-hispanic
-            unknown, //unknown
-            null, //hours worked
-            null, //sick or vacation
-            null, //leave hours
-            null, //miles driven
-            null, //inoffice or remote
-            comment //comments
+    function updateExcel(){
+
+        var entry = 
+        [
+            {value: dateSubmit }, 
+            {value: countiesString, style: {font: {shadow: true}}},
+            {value: maleSubmit, style: {font: {shadow: true}}},
+            {value: femaleSubmit, style: {font: {shadow: true}}},
+            {value: otherSubmit, style: {font: {shadow: true}}},
+            {value: hispanicSubmit, style: {font: {shadow: true}}},
+            {value: nonhispanicSubmit, style: {font: {shadow: true}}},
+            {value: unknownSubmit, style: {font: {shadow: true}}},
+            {value: challengeSubmit, style: {font: {shadow: true}}},
+            {value: commentSubmit, style: {font: {shadow: true}}},
         ]
+    
+       // Adds entry to the array of entries
+       var data = props.eventData.eventData
+       data[0]['data'].push(entry)
+       setEventData(data)
+       props.updateEventData(data) 
 
-        //Current CSV
-        var csv = props.csvData.csvData
-        csv.push(entry)
-        setCSVData(csv)
-        props.updateCSVData(csv)
+       //Clear the state
+       setDate("")
+       props.updateDate("")
+       setCounties([])
+       props.updateCounties([])
+       setMaleTotal("")
+       props.updateMaleTotal("")
+       setFemaleTotal("")
+       props.updateFemaleTotal("")
+       setOtherTotal("")
+       props.updateOtherTotal("")
+       setHispanicTotal("")
+       props.updateHispanicTotal("")
+       setNonhispanicTotal("")
+       props.updateNonhispanicTotal("")
+       setUnknownTotal("")
+       props.updateUnknownTotal("")
+       setChallenges("")
+       props.updateChallenges("")
+       setComment("")
+       props.updateComment("")
+
     }
 
     return(
 
         <Container maxWidth = "xs">
         <h1>Summary: </h1>
-        <h2>Date: {date} </h2>
+        <h2>Date: {dateSubmit} </h2>
         <h2>Counties: {countiesString} </h2>
-        <h2>Male: {male}</h2>
-        <h2>Female: {female}</h2>
-        <h2>Other: {other}</h2>
-        <h2>Hispanic: {hispanic}</h2>
-        <h2>Non-Hispanic: {nonhispanic}</h2>
-        <h2>Unknown: {unknown}</h2>
-        <h2>Comments: {comment}</h2>
+        <h2>Male: {maleSubmit}</h2>
+        <h2>Female: {femaleSubmit}</h2>
+        <h2>Other: {otherSubmit}</h2>
+        <h2>Hispanic: {hispanicSubmit}</h2>
+        <h2>Non-Hispanic: {nonhispanicSubmit}</h2>
+        <h2>Unknown: {unknownSubmit}</h2>
+        <h2>Challenges: {challengeSubmit}</h2>
+        <h2>Comments: {commentSubmit}</h2>
 
         <br/>
         <br/>
@@ -93,7 +130,7 @@ function EventSummary(props){
             <br/>
             <div class = "">
             <Link to = "/">
-                <Button color = "black" variant="contained" onClick={()=>{updateCSV()}}>
+                <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
                     Submit
                 </Button>            
             </Link>
@@ -104,13 +141,33 @@ function EventSummary(props){
 
 const mapStateToProps = state => {
     return {
-        csvData: state.csvData,
+        eventData: state.eventData,
+        counties: state.counties,
+        date: state.date,
+        maleTotal: state.maleTotal,
+        femaleTotal: state.femaleTotal,
+        otherTotal: state.otherTotal,
+        hispanicTotal: state.hispanicTotal,
+        nonhispanicTotal: state.nonhispanicTotal,
+        unknownTotal: state.unknownTotal,
+        comment: state.comment,
+        challenges: state.challenges,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateCSVData: (csvData) => dispatch(updateCSVData(csvData)),
+        updateEventData: (eventData) => dispatch(updateEventData(eventData)),
+        updateCounties: (counties) => dispatch(updateCounties(counties)),
+        updateDate: (date) => dispatch(updateDate(date)),
+        updateMaleTotal: (maleTotal) => dispatch(updateMaleTotal(maleTotal)),
+        updateFemaleTotal: (femaleTotal) => dispatch(updateFemaleTotal(femaleTotal)),
+        updateOtherTotal: (otherTotal) => dispatch(updateOtherTotal(otherTotal)),
+        updateHispanicTotal: (hispanicTotal) => dispatch(updateHispanicTotal(hispanicTotal)),
+        updateNonhispanicTotal: (nonhispanicTotal) => dispatch(updateNonhispanicTotal(nonhispanicTotal)),
+        updateUnknownTotal: (unknownTotal) => dispatch(updateUnknownTotal(unknownTotal)),
+        updateComment: (comment) => dispatch(updateComment(comment)),
+        updateChallenges: (challenges) => dispatch(updateChallenges(challenges)),
     }
 }
 

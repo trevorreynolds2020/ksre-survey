@@ -2,7 +2,7 @@ import UPDATEWORKHOURS from './work-hours.types'
 
 
 const INITIAL_STATE = {
-    workHours: null,
+    workHours: "",
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
