@@ -191,7 +191,7 @@ function Event(props) {
 
         {/* Crowd information */}
             <TextField
-                label = "Male: "
+                label = "# Male: "
                 name = "male"
                 margin = "normal"
                 variant = "outlined"
@@ -201,7 +201,7 @@ function Event(props) {
             />
         <br/>
             <TextField
-                label = "Female: "
+                label = "# Female: "
                 name = "female"
                 margin = "normal"
                 variant = "outlined"
@@ -211,7 +211,7 @@ function Event(props) {
             />
         <br/>
             <TextField
-                label = "Other: "
+                label = "# Other: "
                 name = "other"
                 margin = "normal"
                 variant = "outlined"
@@ -221,7 +221,7 @@ function Event(props) {
             />
         <br/>
             <TextField
-                label = "Hispanic: "
+                label = "# Hispanic: "
                 name = "female"
                 margin = "normal"
                 variant = "outlined"
@@ -231,7 +231,7 @@ function Event(props) {
             />
         <br/>
         <TextField
-            label = "Non-Hispanic: "
+            label = "# Non-Hispanic: "
             name = "female"
             margin = "normal"
             variant = "outlined"
@@ -243,7 +243,7 @@ function Event(props) {
        
         <br/>
             <TextField
-                label = "Unknown: "
+                label = "# Unknown: "
                 name = "female"
                 margin = "normal"
                 variant = "outlined"
