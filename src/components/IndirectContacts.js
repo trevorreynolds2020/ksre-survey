@@ -103,7 +103,7 @@ function IndirectContacts(props){
 
         <br/>
         {/* Method of Contact */}
-        <Dropdown onChange = {handleMethodOfContact} value = {props.methodOfContact.methodOfContact} options={MethodOfContact} placeholder="Select an option" />
+        <Dropdown onChange = {handleMethodOfContact} value = {props.methodOfContact.methodOfContact} options={MethodOfContact} placeholder="Method Of Contact" />
         {/* <Dropdown onChange = {handleChallengesChange} value = {props.challenges.challenges} options={challengesList} placeholder="Grand Challenges" /> */}
 
         {/* Topic */}
