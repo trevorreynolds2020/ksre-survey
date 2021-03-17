@@ -43,35 +43,35 @@ function Homepage(props){
         <Img src={'KSRE_logo.jpg'}></Img> */}
 
         <div class = "main-menu">
-        <h1 id = 'desktop-title'>KSU Research</h1>
+        <h1 id = 'desktop-title'>KSRE Wildcat</h1>
         <ul>
-        <h2 id = 'title'>KSU Research</h2>
-        <li>
-            <Link to = "/report">
+        <h2 id = 'title'>KSRE Wildcat</h2>
+        <li id = 'menu'>
+            <Link to = "/report" id = 'menu-item'>
                 Report          
             </Link>
         </li>
         <br/>
         <li>
-            <Link to = "/direct-contacts">
+            <Link to = "/direct-contacts" id = 'menu-item'>
                 Direct Contact
             </Link>
         </li>
         <br/>
         <li>
-            <Link to = "/indirect-contacts">
+            <Link to = "/indirect-contacts" id = 'menu-item'>
                 Indirect Contact         
             </Link>
         </li>
         <br/>
         <li>
-            <Link to = "/event">
+            <Link to = "/event" id = 'menu-item'>
                 Event
             </Link>
         </li>
         <br/>
         <li>
-            <ExcelFile element={<a>Download Excel</a>}>
+            <ExcelFile element={<a>Download Excel</a>} id = 'menu-item'>
                     <ExcelSheet dataSet={reportData} name="Report"/>
                     <ExcelSheet dataSet={directData} name="Direct Contacts"/>
                     <ExcelSheet dataSet={indirectData} name="Indirect Contact"/>
