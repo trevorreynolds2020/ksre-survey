@@ -107,12 +107,12 @@ function DirectContacts(props){
 
     return(
         <Container maxWidth = "xs">
-            <h1>Direct Contact</h1>
-        <form onSubmit = {dispatchRedux}>
+            <div class = "center-items">
+                <h1>Direct Contact</h1>
+            </div>
+        {/* <form onSubmit = {dispatchRedux}> */}
 
-          {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
           <br/>
-          <div className = "datePickerContainer">
             <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
@@ -124,10 +124,7 @@ function DirectContacts(props){
                 id = "datepicker"
                 className = "datePicker"
             />
-
             
-            {/* redux for database stuff*/}
-            </div>
 
             {/* Name */}
             <br/>
@@ -222,7 +219,7 @@ function DirectContacts(props){
         
                 
           
-            </form>  
+            {/* </form>   */}
       </Container>
     );
 }

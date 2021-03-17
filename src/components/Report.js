@@ -97,13 +97,12 @@ function Report(props){
 
                 
 
-
-            <h1 class = "title"> Report </h1>
-
-           
+            <div class = "center-items">
+                <h1 class = "title"> Report </h1>
+            </div>
+            
             {/* Date */}
 
-            <div className = "datePickerContainer">
             <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
@@ -117,52 +116,57 @@ function Report(props){
                 
             />
             
-            </div>
-            {/* Counties */}
+                  {/* Counties */}
+                  <br/>
+            <br/> 
+            <label class = "counties-visited">Counties Visited:</label>
+            <div class = "counties-visited">
             <FormControl
                 component="fieldset"
-            >
-                 {/*RL take out*/}
-                 <FormGroup row >
                 
-                <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="CR"
-                labelPlacement="start"
-                width= "20%"
-                value = "CR"
-                checked = {props.counties.counties.includes("CR")}
-                onChange = {handleCountiesChange}
-                />
-                <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="LB"
-                labelPlacement="start"
-                width= "20%"
-                value = "LB"
-                checked = {props.counties.counties.includes("LB")}
-                onChange = {handleCountiesChange}
-                />
-                <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="MG"
-                labelPlacement="start"
-                width= "20%"
-                value = "MG"
-                checked = {props.counties.counties.includes("MG")}
-                onChange = {handleCountiesChange}
-                />
-                <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="WL"
-                labelPlacement="start"
-                width= "20%"
-                value = "WL"
-                checked = {props.counties.counties.includes("WL")}
-                onChange = {handleCountiesChange}
-                />
-            </FormGroup>
+             >
+                <FormGroup row >
+                
+                    <FormControlLabel
+                    control={<Checkbox color="primary" />}
+                    label="CR"
+                    labelPlacement="start"
+                    width= "20%"
+                    value = "CR"
+                    checked = {props.counties.counties.includes("CR")}
+                    onChange = {handleCountiesChange}
+                    />
+                    <FormControlLabel
+                    control={<Checkbox color="primary" />}
+                    label="LB"
+                    labelPlacement="start"
+                    width= "20%"
+                    value = "LB"
+                    checked = {props.counties.counties.includes("LB")}
+                    onChange = {handleCountiesChange}
+                    />
+                    <FormControlLabel
+                    control={<Checkbox color="primary" />}
+                    label="MG"
+                    labelPlacement="start"
+                    width= "20%"
+                    value = "MG"
+                    checked = {props.counties.counties.includes("MG")}
+                    onChange = {handleCountiesChange}
+                    />
+                    <FormControlLabel
+                    control={<Checkbox color="primary" />}
+                    label="WL"
+                    labelPlacement="start"
+                    width= "20%"
+                    value = "WL"
+                    checked = {props.counties.counties.includes("WL")}
+                    onChange = {handleCountiesChange}
+                    />
+                </FormGroup>
             </FormControl>
+            </div>
+
 
             {/* Hours Worked */}
             <TextField
@@ -178,12 +182,15 @@ function Report(props){
 
             {/* Vacation or Sick */}
             
+            <div class = "center-items">
             <FormControl component="fieldset">
                 <RadioGroup row aria-label="position" name="position" defaultValue="top">
                     <FormControlLabel onChange = {handleSickOrVacationChange} value="sick" control={<Radio color="primary" />} label="Sick" />
                     <FormControlLabel onChange = {handleSickOrVacationChange} value="vacation" control={<Radio color="primary" />} label="Vacation" />
                 </RadioGroup>
             </FormControl>
+            </div>
+            
 
             <TextField
                 label = "Leave Hours: "
@@ -210,13 +217,14 @@ function Report(props){
             />
 
             {/* Inoffice or Remote */}
+            <div class = "center-items">
             <FormControl component="fieldset">
                 <RadioGroup row aria-label="position" name="position" defaultValue="top">
                     <FormControlLabel onChange = {handleInofficeOrRemoteChange} value="inoffice" control={<Radio color="primary" />} label="Inoffice" />
                     <FormControlLabel onChange = {handleInofficeOrRemoteChange} value="remote" control={<Radio color="primary" />} label="Remote" />
                 </RadioGroup>
             </FormControl>
-
+            </div>
 
             {/* Comments */}
             <h2>Comments:</h2>

@@ -82,10 +82,12 @@ function IndirectContacts(props){
 
     return (
         <Container maxWidth = "xs">
-        <h1>Indirect Contacts</h1>
-        
+
+        <div class = "center-items">       
+            <h1>Indirect Contacts</h1>
+        </div>
+
         {/* Date */}
-        <div className = "datePickerContainer">
             <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
@@ -95,10 +97,8 @@ function IndirectContacts(props){
                 name = "date"
                 maxWidth = "auto"
                 id = "datepicker"
-                className = "datePicker"
-                
+                className = "datePicker"      
             />
-        </div>
         <br/>
 
         <br/>
