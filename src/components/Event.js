@@ -125,7 +125,10 @@ function Event(props) {
     return(
         <Container maxWidth = "xs">
 
-        <h1>Event</h1>
+        <div class = "center-items">       
+            <h1>Event</h1>
+        </div>
+        
         <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
