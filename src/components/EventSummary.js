@@ -131,7 +131,7 @@ function EventSummary(props){
             <div class = "">
             <Link to = "/">
                 <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
-                    Submit
+                    Save
                 </Button>            
             </Link>
         </div>

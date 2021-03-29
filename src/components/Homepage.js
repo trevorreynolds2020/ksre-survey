@@ -48,7 +48,7 @@ function Homepage(props){
         <h2 id = 'title'>KSRE Wildcat</h2>
         <li id = 'menu'>
             <Link to = "/report" id = 'menu-item'>
-                Report          
+                Daily Reporting          
             </Link>
         </li>
         <br/>
@@ -72,7 +72,7 @@ function Homepage(props){
         <br/>
         <li>
             <ExcelFile element={<a>Download Excel</a>} id = 'menu-item'>
-                    <ExcelSheet dataSet={reportData} name="Report"/>
+                    <ExcelSheet dataSet={reportData} name="Daily Reporting"/>
                     <ExcelSheet dataSet={directData} name="Direct Contacts"/>
                     <ExcelSheet dataSet={indirectData} name="Indirect Contact"/>
                     <ExcelSheet dataSet={eventData} name="Event"/>

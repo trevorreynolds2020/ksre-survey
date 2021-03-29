@@ -98,11 +98,11 @@ function Report(props){
                 
 
             <div class = "center-items">
-                <h1 class = "title"> Report </h1>
+                <h1 class = "title"> Daily Reporting </h1>
             </div>
             
             {/* Date */}
-
+            <label>Select Date: </label>
             <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
@@ -220,7 +220,7 @@ function Report(props){
             <div class = "center-items">
             <FormControl component="fieldset">
                 <RadioGroup row aria-label="position" name="position" defaultValue="top">
-                    <FormControlLabel onChange = {handleInofficeOrRemoteChange} value="inoffice" control={<Radio color="primary" />} label="Inoffice" />
+                    <FormControlLabel onChange = {handleInofficeOrRemoteChange} value="inoffice" control={<Radio color="primary" />} label="In office" />
                     <FormControlLabel onChange = {handleInofficeOrRemoteChange} value="remote" control={<Radio color="primary" />} label="Remote" />
                 </RadioGroup>
             </FormControl>
@@ -229,7 +229,7 @@ function Report(props){
             {/* Comments */}
             <h2>Comments:</h2>
             <div class="comments">
-                <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5"></textarea>
+                <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5" placeholder="Details / Collaborators or Notes"></textarea>
             </div>
 
             {/* Renders the Summary page with routing */}

@@ -28,7 +28,7 @@ import { updateComment } from '../redux/Comment/comment.actions';
 
 function DirectContacts(props){
 
-    const challengesList = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"];
+    const challengesList = ["Global Food Systems", "Community Vitality", "4H / Developing Tomorrow's Leaders", "Water", "Health"];
     const genderList = [ "Male", "Female", "other"];
     const raceList = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
     const ethnicityList = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
@@ -113,6 +113,7 @@ function DirectContacts(props){
         {/* <form onSubmit = {dispatchRedux}> */}
 
           <br/>
+            <label>Select Date: </label>
             <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
@@ -141,7 +142,7 @@ function DirectContacts(props){
             {/* Counties */}
             <br/>
             <br/> 
-            <label class = "counties-visited">Counties Visited:</label>
+            <label class = "counties-visited">County:</label>
             <div class = "counties-visited">
             <FormControl
                 component="fieldset"
@@ -202,7 +203,7 @@ function DirectContacts(props){
             {/* Comments */}
             <h2>Comments:</h2>
             <div class="comments">
-                <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5"></textarea>
+                <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5" placeholder="Details / Collaborators or Notes"></textarea>
             </div>
             
             {/* Submit */}

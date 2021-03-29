@@ -88,6 +88,7 @@ function IndirectContacts(props){
         </div>
 
         {/* Date */}
+            <label>Select Date: </label>
             <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
@@ -121,7 +122,7 @@ function IndirectContacts(props){
         {/* Comments */}
         <h2>Comments:</h2>
             <div class="comments">
-                <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5"></textarea>
+                <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5" placeholder="Details / Collaborators or Notes"></textarea>
             </div>
             
             {/* Submit */}

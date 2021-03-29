@@ -30,8 +30,7 @@ import { connect } from "react-redux";
 function Event(props) {
 
     const [startDate, setSelectedDate] = useState(new Date());
-    const challengesList = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
-
+    const challengesList = ["Global Food Systems", "Community Vitality", "4H / Developing Tomorrow's Leaders", "Water", "Health"];
     const [ date , setDate ] = useState(null);
     const [ counties , setCounties ] = useState(null);
     const [ maleTotal , setMaleTotal ] = useState(null);
@@ -128,7 +127,7 @@ function Event(props) {
         <div class = "center-items">       
             <h1>Event</h1>
         </div>
-        
+        <label>Select Date: </label>
         <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
                 onChange = {handleDateChange} // when date changes update the in the DatePicker
@@ -144,7 +143,7 @@ function Event(props) {
         
         {/* Counties */}
             <br/>
-            <label class = "counties-visited">Counties Visited:</label>
+            <label class = "counties-visited">County:</label>
             <div class = "counties-visited">
             <FormControl
                 component="fieldset"
@@ -186,6 +185,15 @@ function Event(props) {
                 width= "20%"
                 value = "WL"
                 checked = {props.counties.counties.includes("WL")}
+                onChange = {handleCountiesChange}
+                />
+                 <FormControlLabel
+                control={<Checkbox color="primary" />}
+                label="OTH"
+                labelPlacement="start"
+                width= "5%"
+                value = "OT"
+                checked = {props.counties.counties.includes("OT")}
                 onChange = {handleCountiesChange}
                 />
             </FormGroup>
@@ -264,7 +272,7 @@ function Event(props) {
         {/* Comments */}
         <h2>Comments:</h2>
         <div class="comments">
-            <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5"></textarea>
+            <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5" placeholder="Details / Collaborators or Notes"></textarea>
         </div>
 
         {/* Submit */}
