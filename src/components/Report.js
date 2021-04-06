@@ -29,7 +29,7 @@ function Report(props){
 
     const [startDate, setSelectedDate] = useState(new Date());
 
-    const [ date , setDate ] = useState(null);
+    const [ date , setDate ] = useState(startDate);
     const [ counties , setCounties ] = useState(null);
     const [ workHours , setWorkHours ] = useState(null);
     const [ sickOrVacation , setSickOrVacation ] = useState(null);
@@ -37,6 +37,8 @@ function Report(props){
     const [ miles , setMiles ] = useState(null);
     const [ inofficeOrRemote , setInofficeOrRemote ] = useState(null);
     const [ comment , setComment ] = useState(null);
+
+    
 
     function handleDateChange(date){
         setDate(date)
@@ -92,6 +94,7 @@ function Report(props){
         props.updateComment(comment)
     }
 
+
     return(
         <Container maxWidth = "xs">
 
@@ -113,6 +116,7 @@ function Report(props){
                 maxWidth = "auto"
                 id = "datepicker"
                 className = "datePicker"
+                value = {startDate}
                 
             />
             
