@@ -8,11 +8,10 @@ import './DirectContactFormat.css';
 import { updateCSVData } from '../redux/csvData/csvData.actions';
 import store from '../redux/store'
 import './Site.css';
-import './KSRE_logo.jpg';
 import { CSVLink, CSVDownload } from "react-csv";
 import {ExcelFile, ExcelSheet} from "react-export-excel";
 import ReactExport from 'react-export-excel';
-import {Img} from 'react-image'
+import logo from './ksre.png';
 
 
 import { connect } from "react-redux";
@@ -41,11 +40,20 @@ function Homepage(props){
 
         {/* <img src = "KSRE_logo.jpg" alt="cat"/>
         <Img src={'KSRE_logo.jpg'}></Img> */}
-
+   
+        <div class = "main">
+        <div id = 'logo-container-mobile'>
+            <img src = {logo} id = 'mobile-logo' width = "400vh"/>
+        </div>
         <div class = "main-menu">
-        <h1 id = 'desktop-title'>KSRE Wildcat</h1>
+        
+        <img src = {logo} id = 'desktop-logo' width = "400vh"/>
         <ul>
-        <h2 id = 'title'>KSRE Wildcat</h2>
+        
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <li id = 'menu'>
             <Link to = "/report" id = 'menu-item'>
                 Daily Reporting          
@@ -80,6 +88,7 @@ function Homepage(props){
         </li>
         </ul>
 
+        </div>
         </div>
  
         </Container>
