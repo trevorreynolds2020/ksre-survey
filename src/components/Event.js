@@ -14,6 +14,7 @@ import './DirectContactFormat.css';
 import {useStateValue} from './StateProvider';
 
 import { updateDate } from '../redux/Date/date.actions';
+import { updateName } from '../redux/Name/name.actions';
 import { updateCounties } from "../redux/Counties/counties.actions";
 import { updateMaleTotal } from '../redux/Male/male.actions';
 import { updateFemaleTotal } from '../redux/Female/female.actions';
@@ -32,6 +33,7 @@ function Event(props) {
     const [startDate, setSelectedDate] = useState(new Date());
     const challengesList = ["Global Food Systems", "Community Vitality", "4H / Developing Tomorrow's Leaders", "Water", "Health"];
     const [ date , setDate ] = useState(null);
+    const [ name , setName ] = useState(null);
     const [ counties , setCounties ] = useState(null);
     const [ maleTotal , setMaleTotal ] = useState(null);
     const [ femaleTotal , setFemaleTotal ] = useState(null);
@@ -60,6 +62,11 @@ function Event(props) {
         // console.log(event.target.value)
         setCounties(counties)
         props.updateCounties(counties)
+    }
+
+    function handleNameChange(event){
+        setName(event.target.value)
+        props.updateName(event.target.value)
     }
 
     function handleMaleTotalChange(event){
@@ -120,13 +127,16 @@ function Event(props) {
     //     console.log(male);
     // }
 
+    var currDate = new Date()
 
     return(
         <Container maxWidth = "xs">
 
+
         <div class = "center-items">       
             <h1>Event</h1>
         </div>
+        
         <label>Select Date: </label>
         <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
@@ -138,8 +148,9 @@ function Event(props) {
                 maxWidth = "auto"
                 id = "datepicker"
                 className = "datePicker"
-                
-            />
+                placeholderText = {currDate.getMonth().toString()+"/"+currDate.getDay().toString()+"/"+currDate.getFullYear().toString()}
+        />
+        
         
         {/* Counties */}
             <br/>
@@ -199,6 +210,17 @@ function Event(props) {
             </FormGroup>
             </FormControl>
             </div>
+
+            {/* Event Name */}
+        <TextField
+                label = "Event Name: "
+                name = "name"
+                margin = "normal"
+                fullWidth
+                variant = "outlined"
+                value = {props.name.name}
+                onChange = {handleNameChange}
+        />
 
         {/* Crowd information */}
             <TextField
@@ -293,6 +315,7 @@ function Event(props) {
 const mapStateToProps = state => {
     return {
         counties: state.counties,
+        name: state.name,
         date: state.date,
         maleTotal: state.maleTotal,
         femaleTotal: state.femaleTotal,
@@ -309,6 +332,7 @@ const mapDispatchToProps = dispatch => {
 return {
     updateCounties: (counties) => dispatch(updateCounties(counties)),
     updateDate: (date) => dispatch(updateDate(date)),
+    updateName: (name) => dispatch(updateName(name)),
     updateMaleTotal: (maleTotal) => dispatch(updateMaleTotal(maleTotal)),
     updateFemaleTotal: (femaleTotal) => dispatch(updateFemaleTotal(femaleTotal)),
     updateOtherTotal: (otherTotal) => dispatch(updateOtherTotal(otherTotal)),

@@ -79,6 +79,7 @@ function IndirectContacts(props){
     //     props.updateChallenges(event.value)
     // }
     
+    var currDate = new Date()
 
     return (
         <Container maxWidth = "xs">
@@ -98,7 +99,9 @@ function IndirectContacts(props){
                 name = "date"
                 maxWidth = "auto"
                 id = "datepicker"
-                className = "datePicker"      
+                className = "datePicker"   
+                placeholderText = {currDate.getMonth().toString()+"/"+currDate.getDay().toString()+"/"+currDate.getFullYear().toString()}
+
             />
         <br/>
 

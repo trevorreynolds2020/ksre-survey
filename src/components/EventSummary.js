@@ -13,6 +13,7 @@ import { updateCSVData } from '../redux/csvData/csvData.actions';
 import { updateEventData } from '../redux/EventData/event-data.actions';
 
 import { updateDate } from '../redux/Date/date.actions';
+import { updateName } from '../redux/Name/name.actions';
 import { updateCounties } from "../redux/Counties/counties.actions";
 import { updateMaleTotal } from '../redux/Male/male.actions';
 import { updateFemaleTotal } from '../redux/Female/female.actions';
@@ -28,6 +29,7 @@ function EventSummary(props){
     const [ updateEventData , setEventData ] = useState(null);
 
     const [ date , setDate ] = useState(null);
+    const [ name , setName ] = useState(null);
     const [ counties , setCounties ] = useState(null);
     const [ maleTotal , setMaleTotal ] = useState(null);
     const [ femaleTotal , setFemaleTotal ] = useState(null);
@@ -47,6 +49,7 @@ function EventSummary(props){
     }
     countiesString = countiesString.slice(0, -2)
     var dateSubmit = state.date.date.toString()
+    var nameSubmit = state.name.name
     var maleSubmit = state.male.maleTotal
     var femaleSubmit = state.female.femaleTotal
     var otherSubmit = state.other.otherTotal
@@ -62,6 +65,7 @@ function EventSummary(props){
         [
             {value: dateSubmit }, 
             {value: countiesString, style: {font: {shadow: true}}},
+            {value: nameSubmit},
             {value: maleSubmit, style: {font: {shadow: true}}},
             {value: femaleSubmit, style: {font: {shadow: true}}},
             {value: otherSubmit, style: {font: {shadow: true}}},
@@ -78,11 +82,13 @@ function EventSummary(props){
        setEventData(data)
        props.updateEventData(data) 
 
-       //Clear the state
+       // Resets redux variables to original values
        setDate("")
        props.updateDate("")
        setCounties([])
        props.updateCounties([])
+       setName("")
+       props.updateName("")
        setMaleTotal("")
        props.updateMaleTotal("")
        setFemaleTotal("")
@@ -108,6 +114,7 @@ function EventSummary(props){
         <h1>Summary: </h1>
         <h2>Date: {dateSubmit} </h2>
         <h2>Counties: {countiesString} </h2>
+        <h2>Event Name: {nameSubmit} </h2>
         <h2>Male: {maleSubmit}</h2>
         <h2>Female: {femaleSubmit}</h2>
         <h2>Other: {otherSubmit}</h2>
@@ -119,7 +126,7 @@ function EventSummary(props){
 
         <br/>
         <br/>
-        <div class = "">
+        <div class = "center-button">
         <Link to = "/event">
             <Button color = "black" variant="contained">
                 Edit
@@ -128,7 +135,7 @@ function EventSummary(props){
         </div>
         <br/>
             <br/>
-            <div class = "">
+            <div class = "center-button">
             <Link to = "/">
                 <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
                     Save
@@ -144,6 +151,7 @@ const mapStateToProps = state => {
         eventData: state.eventData,
         counties: state.counties,
         date: state.date,
+        name: state.name,
         maleTotal: state.maleTotal,
         femaleTotal: state.femaleTotal,
         otherTotal: state.otherTotal,
@@ -160,6 +168,7 @@ const mapDispatchToProps = dispatch => {
         updateEventData: (eventData) => dispatch(updateEventData(eventData)),
         updateCounties: (counties) => dispatch(updateCounties(counties)),
         updateDate: (date) => dispatch(updateDate(date)),
+        updateName: (name) => dispatch(updateName(name)),
         updateMaleTotal: (maleTotal) => dispatch(updateMaleTotal(maleTotal)),
         updateFemaleTotal: (femaleTotal) => dispatch(updateFemaleTotal(femaleTotal)),
         updateOtherTotal: (otherTotal) => dispatch(updateOtherTotal(otherTotal)),

@@ -3,6 +3,8 @@ import { combineReducers } from 'redux';
 
 import nameReducer from './Name/name.reducer';
 import countiesReducer from './Counties/counties.reducer';
+import emailReducer from './Email/email.reducers';
+import phoneNumberReducer from './PhoneNumber/phone-number.reducers';
 import dateReducer from './Date/date.reducer';
 import challengesReducer from './Challenges/challenges.reducers';
 import genderReducer from './Gender/gender.reducers';
@@ -38,6 +40,8 @@ import eventDataReducer from './EventData/event-data.reducers';
 const rootReducer = combineReducers({
     name: nameReducer,
     counties: countiesReducer,
+    email: emailReducer,
+    phoneNumber: phoneNumberReducer,
     date: dateReducer,
     challenges: challengesReducer,
     gender: genderReducer,

@@ -95,4 +95,10 @@ ul {
         transform: scaleX(1);
         transform-origin: left;
       }
-
+      
+      .center-button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }

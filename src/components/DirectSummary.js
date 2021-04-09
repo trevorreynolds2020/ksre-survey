@@ -11,6 +11,8 @@ import {connect} from "react-redux";
 import store from '../redux/store'
 import { updateDirectContactData } from '../redux/DirectContactData/direct-contact-data.actions';
 import { updateName } from "../redux/Name/name.actions";
+import { updatePhoneNumber } from "../redux/PhoneNumber/phone-number.actions";
+import { updateEmail } from "../redux/Email/email.actions";
 import { updateCounties } from "../redux/Counties/counties.actions";
 import { updateDate } from '../redux/Date/date.actions';
 import { updateChallenges } from '../redux/Challenges/challenges.actions';
@@ -25,6 +27,8 @@ function DirectSummary(props){
     const [ updateDirectContactData , setDirectContactData ] = useState(null);
    
     const [ name , setName ] = useState(null);
+    const [ phoneNumber , setPhoneNumber ] = useState(null);
+    const [ email , setEmail ] = useState(null);
     const [ counties , setCounties ] = useState(null);
     const [ date , setDate ] = useState(null);
     const [ challenges , setChallenges ] = useState(null);
@@ -36,6 +40,8 @@ function DirectSummary(props){
     var state = store.getState()
     
     var nameSubmit = state.name.name
+    var phoneNumberSubmit = state.phoneNumber.phoneNumber
+    var emailSubmit = state.email.email
     var countiesSubmit = state.counties.counties
     var countiesString = ""
     for(var i = 0; i < countiesSubmit.length; i++){
@@ -49,6 +55,7 @@ function DirectSummary(props){
     var ethnicitySubmit = state.ethnicity.ethnicity
     var commentSubmit = state.comment.comment
 
+
     function updateExcel(){
 
         // Entry user is currently making
@@ -56,6 +63,8 @@ function DirectSummary(props){
         [
             {value: dateSubmit }, 
             {value: nameSubmit, style: {font: {shadow: true}}},
+            {value: phoneNumberSubmit, style: {font: {shadow: true}}},
+            {value: emailSubmit, style: {font: {shadow: true}}},
             {value: countiesString, style: {font: {shadow: true}}},
             {value: challengeSubmit, style: {font: {shadow: true}}},
             {value: genderSubmit, style: {font: {shadow: true}}},
@@ -76,6 +85,10 @@ function DirectSummary(props){
         props.updateDate("")
         setName("")
         props.updateName("")
+        setPhoneNumber("")
+        props.updatePhoneNumber("")
+        setEmail("")
+        props.updateEmail("")
         setCounties([])
         props.updateCounties([])
         setChallenges("")
@@ -103,6 +116,8 @@ function DirectSummary(props){
         <h1>Summary: </h1>
         <h2>Date: {dateSubmit} </h2>
         <h2>Name: {nameSubmit}</h2>
+        <h2>Phone Number: {phoneNumberSubmit}</h2>
+        <h2>Email: {emailSubmit}</h2>
         <h2>County: {countiesString} </h2>
         <h2>Grand Challenges: {challengeSubmit}</h2>
         <h2>Gender: {genderSubmit}</h2>
@@ -112,7 +127,7 @@ function DirectSummary(props){
 
         <br/>
         <br/>
-        <div class = "">
+        <div class = "center-button">
         <Link to = "/direct-contacts">
             <Button color = "black" variant="contained">
                 Edit
@@ -121,10 +136,10 @@ function DirectSummary(props){
         </div>
         <br/>
             <br/>
-            <div class = "">
+            <div class = "center-button">
             <Link to = "/">
                 <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
-                    Submit
+                    Save
                 </Button>            
             </Link>
         </div>
@@ -150,6 +165,8 @@ const mapDispatchToProps = dispatch => {
     return {
         updateDirectContactData: (directContactData) => dispatch(updateDirectContactData(directContactData)),
         updateName: (name) => dispatch(updateName(name)),
+        updatePhoneNumber: (phoneNumber) => dispatch(updatePhoneNumber(phoneNumber)),
+        updateEmail: (email) => dispatch(updateEmail(email)),
         updateCounties: (counties) => dispatch(updateCounties(counties)),
         updateDate: (date) => dispatch(updateDate(date)),
         updateChallenges: (challenges) => dispatch(updateChallenges(challenges)),

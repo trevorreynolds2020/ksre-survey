@@ -16,6 +16,8 @@ import { connect } from "react-redux";
 import { Button} from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import { updateName } from "../redux/Name/name.actions";
+import { updatePhoneNumber } from "../redux/PhoneNumber/phone-number.actions";
+import { updateEmail } from "../redux/Email/email.actions";
 import { updateCounties } from "../redux/Counties/counties.actions";
 import { updateDate } from '../redux/Date/date.actions';
 import { updateChallenges } from '../redux/Challenges/challenges.actions';
@@ -35,6 +37,8 @@ function DirectContacts(props){
     const MethodOfContact = ["In-person", "Email", "Phone", "Video"]
 
     const [ name , setName ] = useState(null);
+    const [ phoneNumber , setPhoneNumber ] = useState(null);
+    const [ email , setEmail ] = useState(null);
     const [ counties , setCounties ] = useState(null);
     const [ date , setDate ] = useState(null);
     const [ challenges , setChallenges ] = useState(null);
@@ -54,6 +58,16 @@ function DirectContacts(props){
         console.log(event.target.value)
         setName(event.target.value)
         props.updateName(event.target.value)
+    }
+
+    function handlePhoneNumberChange(event){
+        setPhoneNumber(event.target.value)
+        props.updatePhoneNumber(event.target.value)
+    }
+
+    function handleEmailChange(event){
+        setEmail(event.target.value)
+        props.updateEmail(event.target.value)
     }
 
     function handleCountiesChange(event){
@@ -105,6 +119,8 @@ function DirectContacts(props){
         props.updateEthnicity(event.value)
     }
 
+    var currDate = new Date()
+
     return(
         <Container maxWidth = "xs">
             <div class = "center-items">
@@ -124,6 +140,7 @@ function DirectContacts(props){
                 maxWidth = "auto"
                 id = "datepicker"
                 className = "datePicker"
+                placeholderText = {currDate.getMonth().toString()+"/"+currDate.getDay().toString()+"/"+currDate.getFullYear().toString()}
             />
             
 
@@ -137,6 +154,30 @@ function DirectContacts(props){
                 fullWidth
                 value = {props.name.name}
                 onChange = {handleNameChange}
+            />
+
+            {/* Phone Number */}
+            <br/>
+            <TextField
+                label = "Phone Number: "
+                name = "phoneNumber"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+                value = {props.phoneNumber}
+                onChange = {handlePhoneNumberChange}
+            />
+
+            {/* Email */}
+            <br/>
+            <TextField
+                label = "Email: "
+                name = "email"
+                margin = "normal"
+                variant = "outlined"
+                fullWidth
+                value = {props.email}
+                onChange = {handleEmailChange}
             />
 
             {/* Counties */}
@@ -209,7 +250,7 @@ function DirectContacts(props){
             {/* Submit */}
             <br/>
             <br/>
-            <div>
+            <div class = "submit-button">
    
                 <Link to = "/direct-summary">
                     <Button color = "black" variant="contained">
@@ -243,6 +284,8 @@ return {
     updateName: (name) => dispatch(updateName(name)),
     updateCounties: (counties) => dispatch(updateCounties(counties)),
     updateDate: (date) => dispatch(updateDate(date)),
+    updatePhoneNumber: (phoneNumber) => dispatch(updatePhoneNumber(phoneNumber)),
+    updateEmail: (email) => dispatch(updateEmail(email)),
     updateChallenges: (challenges) => dispatch(updateChallenges(challenges)),
     updateGender: (gender) => dispatch(updateGender(gender)),
     updateRace: (race) => dispatch(updateRace(race)),

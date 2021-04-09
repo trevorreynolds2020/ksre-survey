@@ -93,6 +93,8 @@ function Report(props){
         setComment(comment)
         props.updateComment(comment)
     }
+    
+    var currDate = new Date()
 
 
     return(
@@ -117,6 +119,7 @@ function Report(props){
                 id = "datepicker"
                 className = "datePicker"
                 value = {startDate}
+                placeholderText = {currDate.getMonth().toString()+"/"+currDate.getDay().toString()+"/"+currDate.getFullYear().toString()}
                 
             />
             

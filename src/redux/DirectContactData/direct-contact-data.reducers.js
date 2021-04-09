@@ -4,7 +4,7 @@ import UPDATEDIRECTCONTACTDATA from './direct-contact-data.types'
 const INITIAL_STATE = {
     directContactData:[
         {
-            columns: ["Date", "Name", "Counties","Grand Challenges","Gender","Race","Ethnicity","Comments"],
+            columns: ["Date", "Name", "Phone Number" , "Email" , "Counties","Grand Challenges","Gender","Race","Ethnicity","Comments"],
             data: []
         }
     ]

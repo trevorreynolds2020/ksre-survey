@@ -108,7 +108,7 @@ function ReportSummary(props){
 
         <br/>
         <br/>
-        <div class = "">
+        <div class = "center-button">
         <Link to = "/report">
             <Button color = "black" variant="contained">
                 Edit
@@ -117,10 +117,10 @@ function ReportSummary(props){
         </div>
         <br/>
             <br/>
-            <div class = "">
+            <div class = "center-button">
             <Link to = "/">
                 <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
-                    Submit
+                    Save
                 </Button>            
             </Link>
         </div>

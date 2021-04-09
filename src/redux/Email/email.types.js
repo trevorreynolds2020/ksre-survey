@@ -1,0 +1,3 @@
+const UPDATEEMAIL = 'UPDATEEMAIL'
+
+export default UPDATEEMAIL;
