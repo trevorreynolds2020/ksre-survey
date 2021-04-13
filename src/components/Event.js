@@ -303,7 +303,7 @@ function Event(props) {
             <div class = "submit-button">
             <Link to = "/event-summary">
                     <Button color = "black" variant="contained">
-                        Submit
+                        Review
                     </Button>            
                 </Link>
             </div>

@@ -32,7 +32,7 @@ function IndirectContacts(props){
 
     const [startDate, setSelectedDate] = useState(new Date());
     const MethodOfContact = ["Newspaper" , "Podcast" , "Radio", "TV", "Social Media", "Video", "E-News", "Exhibit", "Mailing", "Handout"]
-    const Challenges = ["Community Vitality / VC","Developing Tomorrows Leaders","Global Health Systems","Health","Water"]
+    const Challenges = ["Global Food Systems", "Community Vitality", "4H / Developing Tomorrow's Leaders", "Water", "Health"]
 
     const [ date , setDate ] = useState(null);
     const [ methodOfContact , setMethodOfContact ] = useState(null);
@@ -134,7 +134,7 @@ function IndirectContacts(props){
             <div class = "submit-button">
             <Link to = "/indirect-summary">
                 <Button color = "black" variant="contained">
-                            Submit
+                    Review
                 </Button>            
             </Link>
             </div>

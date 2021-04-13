@@ -254,7 +254,7 @@ function DirectContacts(props){
    
                 <Link to = "/direct-summary">
                     <Button color = "black" variant="contained">
-                        Submit
+                        Review
                     </Button>            
                 </Link>
             </div>

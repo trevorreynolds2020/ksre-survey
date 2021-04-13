@@ -249,7 +249,7 @@ function Report(props){
             <div class = "submit-button">
             <Link to = "/report-summary">
                 <Button color = "black" variant="contained">
-                        Submit
+                        Review
                 </Button>            
             </Link>
             </div>

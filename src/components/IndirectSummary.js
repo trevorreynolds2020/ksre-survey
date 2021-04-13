@@ -90,7 +90,7 @@ function IndirectSummary(props){
             <div class = "center-button">
             <Link to = "/">
                 <Button color = "black" variant="contained" onClick={()=>{updateExcel()}}>
-                    Save
+                    Submit
                 </Button>                      
             </Link>
         </div>
