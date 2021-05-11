@@ -3,6 +3,8 @@ for the user authentication and sending information to a database.
 
 For authentication you'll want to use:
     - Redirect the user to https://signin.k-state.edu/WebISO/ to login
+    - Create a ticket
+    - Based on the response decide whether or not user is logged in
 
 
 Here are two examples of handling user athentication:
@@ -11,4 +13,3 @@ Here are two examples of handling user athentication:
 
 You'll have to POST the information from redux (reportData,directReportData,indirectReportData,eventData)
 to the KSRE users ID in the database.
-
