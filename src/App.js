@@ -1,11 +1,6 @@
 import React from 'react';
-
-// import DirectContacts from './components/DirectContacts';
 import DirectContacts from './components/DirectContacts';
-
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-
-// import DirectSummary from './components/DirectSummary';
 import DirectSummary from './components/DirectSummary';
 
 import Report from './components/Report';

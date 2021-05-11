@@ -8,7 +8,7 @@ import { Button, FormControl, FormGroup } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import './ReportStyle.css';
+import '../styles/ReportStyle.css';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 import { updateDate } from '../redux/Date/date.actions';
@@ -22,8 +22,11 @@ import { updateComment } from '../redux/Comment/comment.actions';
 
 import { connect } from "react-redux";
 
-//import Check from 'carbon-components/Checkbox'; plz work
-
+/*
+    A report records the hours works, leave hours, and miles driven on a given day.
+    Doesn't currently differentiate between sick/vacation hours in the spreadsheet.
+    Same applies to personal miles/remote
+*/
 
 function Report(props){
 
@@ -37,8 +40,6 @@ function Report(props){
     const [ miles , setMiles ] = useState(null);
     const [ inofficeOrRemote , setInofficeOrRemote ] = useState(null);
     const [ comment , setComment ] = useState(null);
-
-    
 
     function handleDateChange(date){
         setDate(date)
@@ -128,10 +129,7 @@ function Report(props){
             <br/> 
             <label class = "counties-visited">Counties Visited:</label>
             <div class = "counties-visited">
-            <FormControl
-                component="fieldset"
-                
-             >
+            <FormControl component="fieldset">
                 <FormGroup row >
                 
                     <FormControlLabel
@@ -198,11 +196,10 @@ function Report(props){
             </FormControl>
             </div>
             
-
+            {/* Leave Hours */}
             <TextField
                 label = "Leave Hours: "
                 name = "personalMilesDriven"
-                //value = {formData.personalMilesDriven}
                 margin = "normal"
                 variant = "outlined"
                 autoComplete = "off"
@@ -215,7 +212,6 @@ function Report(props){
             <TextField
                 label = "Personal Miles Driven: "
                 name = "miles"
-                //value = {formData.personalMilesDriven}
                 margin = "normal"
                 variant = "outlined"
                 fullWidth
@@ -238,10 +234,6 @@ function Report(props){
             <div class="comments">
                 <textarea onChange={handleCommentChange} value = {props.comment.comment} id = "comment-box" name="comment" cols="" rows="5" placeholder="Details / Collaborators or Notes"></textarea>
             </div>
-
-            {/* Renders the Summary page with routing */}
-
-            {/* Take info from fields and pass to database, generate id and render same component with unique id */}
             
             {/* Submit */}
             <br/>
@@ -254,8 +246,6 @@ function Report(props){
             </Link>
             </div>
         </Container>
-
-
         
     )
 }

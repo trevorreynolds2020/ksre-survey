@@ -1,22 +1,13 @@
 import React, {useState } from 'react'
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Checkbox from '@material-ui/core/Checkbox';
-import { Button, FormControl, FormGroup } from '@material-ui/core';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import { TextBoxComponent } from '@syncfusion/ej2-react-inputs';
+import { Button } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
 import 'react-dropdown/style.css';
-//import { DropDownList } from '@progress/kendo-react-dropdowns';
-import './DirectContactFormat.css';
+import '../styles/DirectContactFormat.css';
 import { connect } from "react-redux";
-
 
 import { updateDate } from '../redux/Date/date.actions';
 import { updateMethodOfContact } from '../redux/MethodOfContact/method_of_contact.actions'
@@ -24,7 +15,11 @@ import { updateTopic } from '../redux/Topic/topic.actions'
 import { updateChallenges } from '../redux/Challenges/challenges.actions'
 import { updateComment } from '../redux/Comment/comment.actions'
 
-
+/*
+    An indirect contact is any form of communication that goes out to people.
+    For example, a newspaper artile, podcast, tweet. The main difference between
+    this and a direct contact is they don't necessarily know who's viewing it.
+*/
 
 
 function IndirectContacts(props){

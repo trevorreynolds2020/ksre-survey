@@ -9,9 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
 import 'react-dropdown/style.css';
-//import { DropDownList } from '@progress/kendo-react-dropdowns';
-import './DirectContactFormat.css';
-import {useStateValue} from './StateProvider';
+import '../styles/DirectContactFormat.css';
 
 import { updateDate } from '../redux/Date/date.actions';
 import { updateName } from '../redux/Name/name.actions';
@@ -27,6 +25,10 @@ import { updateComment } from '../redux/Comment/comment.actions';
 
 import { connect } from "react-redux";
 
+/*
+    An event is an organized event where they're interacting with a lot of people.
+    This is supposed to roughly describe the group of people they're speaking to.
+*/
 
 function Event(props) {
 
@@ -58,8 +60,6 @@ function Event(props) {
             const index = counties.indexOf(event.target.value);
             counties.splice(index,1);
         }
-        console.log(counties)
-        // console.log(event.target.value)
         setCounties(counties)
         props.updateCounties(counties)
     }
@@ -101,31 +101,15 @@ function Event(props) {
 
 
     function handleChallengesChange(event){
-        console.log('triggered')
-        console.log(event.value)
         setChallenges(event.value)
         props.updateChallenges(event.value)
     }
 
     function handleCommentChange(){
         var comment = document.getElementById("comment-box").value
-        console.log(comment)
         setComment(comment)
         props.updateComment(comment)
     }
-    //const gender_male = null;
-    
-
-    // handleChange(event){
-    //     const name = event.target.name;
-    //     const value = event.target.type === "checkbox" ? event.target.checked: event.target.value;
-    //     this.setState({[name]:value});
-    // }
-
-    // function handleChange(){
-    //     dispatch({ type: 'SET_MALE', male: "sample" });
-    //     console.log(male);
-    // }
 
     var currDate = new Date()
 
@@ -156,9 +140,7 @@ function Event(props) {
             <br/>
             <label class = "counties-visited">County:</label>
             <div class = "counties-visited">
-            <FormControl
-                component="fieldset"
-            >
+            <FormControl component="fieldset">
                  {/*RL take out*/}
                  <FormGroup row >
                 
@@ -211,7 +193,7 @@ function Event(props) {
             </FormControl>
             </div>
 
-            {/* Event Name */}
+        {/* Event Name */}
         <TextField
                 label = "Event Name: "
                 name = "name"
@@ -223,45 +205,45 @@ function Event(props) {
         />
 
         {/* Crowd information */}
-            <TextField
-                label = "# Male: "
-                name = "male"
-                margin = "normal"
-                variant = "outlined"
-                fullWidth
-                value = {props.maleTotal}
-                onChange = {handleMaleTotalChange}
-            />
+        <TextField
+            label = "# Male: "
+            name = "male"
+            margin = "normal"
+            variant = "outlined"
+            fullWidth
+            value = {props.maleTotal}
+            onChange = {handleMaleTotalChange}
+        />
         <br/>
-            <TextField
-                label = "# Female: "
-                name = "female"
-                margin = "normal"
-                variant = "outlined"
-                fullWidth
-                value = {props.femaleTotal}
-                onChange = {handleFemaleTotalChange}
-            />
+        <TextField
+            label = "# Female: "
+            name = "female"
+            margin = "normal"
+            variant = "outlined"
+            fullWidth
+            value = {props.femaleTotal}
+            onChange = {handleFemaleTotalChange}
+        />
         <br/>
-            <TextField
-                label = "# Other: "
-                name = "other"
-                margin = "normal"
-                variant = "outlined"
-                fullWidth
-                value = {props.otherTotal}
-                onChange = {handleOtherTotalChange}
-            />
+        <TextField
+            label = "# Other: "
+            name = "other"
+            margin = "normal"
+            variant = "outlined"
+            fullWidth
+            value = {props.otherTotal}
+            onChange = {handleOtherTotalChange}
+        />
         <br/>
-            <TextField
-                label = "# Hispanic: "
-                name = "female"
-                margin = "normal"
-                variant = "outlined"
-                fullWidth
-                value = {props.hispanicTotal}
-                onChange = {handleHispanicTotalChange}
-            />
+        <TextField
+            label = "# Hispanic: "
+            name = "female"
+            margin = "normal"
+            variant = "outlined"
+            fullWidth
+            value = {props.hispanicTotal}
+            onChange = {handleHispanicTotalChange}
+        />
         <br/>
         <TextField
             label = "# Non-Hispanic: "
@@ -275,15 +257,15 @@ function Event(props) {
         />
        
         <br/>
-            <TextField
-                label = "# Unknown: "
-                name = "female"
-                margin = "normal"
-                variant = "outlined"
-                fullWidth
-                value = {props.unknownTotal}
-                onChange = {handleUnknownTotalChange}
-            />
+        <TextField
+            label = "# Unknown: "
+            name = "female"
+            margin = "normal"
+            variant = "outlined"
+            fullWidth
+            value = {props.unknownTotal}
+            onChange = {handleUnknownTotalChange}
+        />
 
         {/* Grand Challenges */}
         <br/>

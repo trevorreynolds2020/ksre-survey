@@ -1,0 +1,14 @@
+For the backend, you'll use AWS Lambda (or at least that's what IT recommended we use)
+for the user authentication and sending information to a database. 
+
+For authentication you'll want to use:
+    - Redirect the user to https://signin.k-state.edu/WebISO/ to login
+
+
+Here are two examples of handling user athentication:
+    - .NET C# -> https://github.com/zombiepaladin/asp-core-cas-auth-test
+    - nodeJS -> https://github.com/zombiepaladin/auth-cas
+
+You'll have to POST the information from redux (reportData,directReportData,indirectReportData,eventData)
+to the KSRE users ID in the database.
+

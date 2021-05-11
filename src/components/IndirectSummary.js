@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
 import 'react-dropdown/style.css';
 //import { DropDownList } from '@progress/kendo-react-dropdowns';
-import './DirectContactFormat.css';
+import '../styles/DirectContactFormat.css';
 import {connect} from "react-redux";
 import store from '../redux/store'
 // import { updateCSVData } from '../redux/csvData/csvData.actions';

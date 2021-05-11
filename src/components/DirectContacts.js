@@ -6,12 +6,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl, FormGroup } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Dropdown from 'react-dropdown'; //https://openbase.io/js/react-dropdown
+import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-//import { DropDownList } from '@progress/kendo-react-dropdowns';
-import './DirectContactFormat.css';
-//import {configureStore} from "react-redux";
-//import {connect} from "react-redux";
+import '../styles/DirectContactFormat.css';
+
 import { connect } from "react-redux";
 import { Button} from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
@@ -26,7 +24,15 @@ import { updateRace } from '../redux/Race/race.actions';
 import { updateEthnicity } from '../redux/Ethnicity/ethnicity.actions';
 import { updateComment } from '../redux/Comment/comment.actions';
 
-
+/* 
+    A direct contact is anyone they interact directly with.
+    For example, if they meet with someone inperson and talk about crop yields
+    they would enter that persons name, (optionally) phone number, email, etc
+    and in the comments probably talk about the reason for meeting the person.
+    
+    Gender, race, ethnicity are manditory requirements from the government. They
+    submitted this info to continue getting funding.
+*/
 
 function DirectContacts(props){
 
@@ -34,7 +40,7 @@ function DirectContacts(props){
     const genderList = [ "Male", "Female", "other"];
     const raceList = ["American Indian or Alaska Native","Asian","Black or African American","Native Hawaiian or Other Pacific Islander","White"]
     const ethnicityList = ["Hispanic or Latino or Spanish Origin","Not Hispanic or Latino or Spanish Origin"]
-    const MethodOfContact = ["In-person", "Email", "Phone", "Video"]
+    const methodOfContact = ["In-person", "Email", "Phone", "Video"]
 
     const [ name , setName ] = useState(null);
     const [ phoneNumber , setPhoneNumber ] = useState(null);
@@ -49,13 +55,7 @@ function DirectContacts(props){
 
 
 
-
-    function dispatchRedux(){
-        
-    }
-
     function handleNameChange(event){
-        console.log(event.target.value)
         setName(event.target.value)
         props.updateName(event.target.value)
     }
@@ -79,8 +79,6 @@ function DirectContacts(props){
             const index = counties.indexOf(event.target.value);
             counties.splice(index,1);
         }
-        console.log(counties)
-        // console.log(event.target.value)
         setCounties(counties)
         props.updateCounties(counties)
     }
@@ -92,14 +90,11 @@ function DirectContacts(props){
 
     function handleCommentChange(){
         var comment = document.getElementById("comment-box").value
-        console.log(comment)
         setComment(comment)
         props.updateComment(comment)
     }
 
     function handleChallengesChange(event){
-        console.log('triggered')
-        console.log(event.value)
         setChallenges(event.value)
         props.updateChallenges(event.value)
     }
@@ -126,9 +121,8 @@ function DirectContacts(props){
             <div class = "center-items">
                 <h1>Direct Contact</h1>
             </div>
-        {/* <form onSubmit = {dispatchRedux}> */}
 
-          <br/>
+            <br/>
             <label>Select Date: </label>
             <DatePicker  
                 selected = {props.date.date} // current date in DatePicker
@@ -185,10 +179,7 @@ function DirectContacts(props){
             <br/> 
             <label class = "counties-visited">County:</label>
             <div class = "counties-visited">
-            <FormControl
-                component="fieldset"
-                
-             >
+            <FormControl component="fieldset">
                 <FormGroup row >
                 
                     <FormControlLabel
@@ -231,7 +222,7 @@ function DirectContacts(props){
             </FormControl>
             </div>
 
-                       {/* Grand Challenges, Gender, Race, Ethnicity*/}
+            {/* Grand Challenges, Gender, Race, Ethnicity*/}
             <br/>
             <Dropdown onChange = {handleChallengesChange} value = {props.challenges.challenges} options={challengesList} placeholder="Grand Challenges" />
             <br/>
@@ -259,9 +250,6 @@ function DirectContacts(props){
                 </Link>
             </div>
         
-                
-          
-            {/* </form>   */}
       </Container>
     );
 }
